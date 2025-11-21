@@ -5,35 +5,340 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corpus Escondido | Selector Alfabético</title>
     <style>
-        /* [Estilos base de Arrecife Digital y el Eje 3] */
-        :root { --bg-color: #0a0a0a; --text-primary: #e5e5e5; --accent-core: #ffd700; --font-mono: 'Courier New', Courier, monospace; }
-        body { background-color: var(--bg-color); color: var(--text-primary); font-family: var(--font-mono); text-align: center; padding: 2rem; }
-        .selector-grid { max-width: 800px; margin: 3rem auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(40px, 1fr)); gap: 10px; }
-        .alpha-link { display: block; padding: 10px 0; background-color: #1a1a1a; color: var(--accent-core); text-decoration: none; border: 1px solid #333; transition: background-color 0.2s; font-size: 1.2rem; }
-        .alpha-link:hover { background-color: #333; color: #fff; }
-        h1 { color: var(--accent-core); margin-bottom: 1rem; }
-        p { color: #a0a0a0; margin-bottom: 3rem; }
+        :root{
+          --bg:#070707;
+          --panel:#0f0f0f;
+          --muted:#9aa0a0;
+          --accent:#ffd700;
+          --border:1px solid #222;
+          --radius:10px;
+          --mono: 'Courier New', Courier, monospace;
+        }
+        *{box-sizing:border-box}
+        body{
+          margin:0;
+          min-height:100vh;
+          background:linear-gradient(180deg,#050505,#0b0b0b);
+          color:#eaeaea;
+          font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+          padding:2rem;
+          display:flex;
+          align-items:flex-start;
+          justify-content:center;
+        }
+        .page{
+          width:100%;
+          max-width:980px;
+          background:var(--panel);
+          border:var(--border);
+          border-radius:var(--radius);
+          overflow:hidden;
+          box-shadow:0 10px 40px rgba(0,0,0,0.6);
+        }
+        header{
+          padding:1.6rem;
+          border-bottom:var(--border);
+          background:linear-gradient(90deg, rgba(255,215,0,0.02), transparent);
+        }
+        header h1{
+          margin:0;
+          font-family:var(--mono);
+          color:var(--accent);
+          font-size:1.2rem;
+          letter-spacing:1px;
+          text-transform:uppercase;
+        }
+        header p{margin:0.4rem 0 0;color:var(--muted)}
+        main{padding:1.2rem}
+        .selector-wrap{display:flex;gap:1.2rem;flex-direction:column;align-items:stretch}
+        .selector-grid{
+          display:grid;
+          grid-template-columns:repeat(auto-fit,minmax(40px,1fr));
+          gap:10px;
+          margin:1rem 0;
+        }
+        .alpha-link{
+          display:block;
+          padding:10px 0;
+          background:#121212;
+          color:var(--accent);
+          text-decoration:none;
+          border:1px solid rgba(255,255,255,0.03);
+          text-align:center;
+          transition:transform .12s ease, background .12s;
+          font-weight:700;
+          border-radius:6px;
+        }
+        .alpha-link:hover{transform:translateY(-3px); background:#1b1b1b; color:#fff}
+
+        /* video panel */
+        .video-panel{
+          margin-top:1.2rem;
+          display:grid;
+          grid-template-columns: 1fr 260px;
+          gap:1rem;
+        }
+        @media(max-width:840px){ .video-panel{grid-template-columns:1fr} }
+
+        .video-box{
+          background:#000;
+          border-radius:8px;
+          overflow:hidden;
+          border:2px solid rgba(255,215,0,0.04);
+          min-height:180px;
+        }
+        .video-box iframe{width:100%;height:320px;border:0;display:block}
+        @media(max-width:520px){ .video-box iframe{height:200px} }
+
+        .video-controls{
+          background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);
+          padding:0.8rem;
+          border-radius:8px;
+          border:1px solid rgba(255,255,255,0.03);
+          display:flex;
+          flex-direction:column;
+          gap:0.6rem;
+          align-items:flex-start;
+        }
+        .btn{
+          display:inline-flex;
+          align-items:center;
+          gap:0.5rem;
+          padding:0.5rem 0.9rem;
+          border-radius:8px;
+          background:transparent;
+          color:var(--accent);
+          border:1px solid rgba(255,215,0,0.12);
+          text-decoration:none;
+          cursor:pointer;
+          font-weight:700;
+        }
+        .btn.secondary{ color:#cfcfcf; border:1px solid rgba(255,255,255,0.04) }
+        .meta{ color:var(--muted); font-size:0.9rem }
+
+        .small{
+          font-size:0.85rem;padding:0.4rem 0.7rem;border-radius:6px;
+        }
+        .status{ color:var(--muted); font-size:0.85rem }
+
+        footer{padding:1rem;color:var(--muted);border-top:var(--border);text-align:center}
     </style>
 </head>
 <body>
-    <h1>Corpus Escondido: Navegación del Sedimento</h1>
-    <p>Seleccione la letra inicial para acceder al listado de conversaciones archivadas.</p>
-    
-    <div class="selector-grid">
-        <script>
-            const grid = document.querySelector('.selector-grid');
-            for (let i = 65; i <= 90; i++) {
-                const char = String.fromCharCode(i);
-                const link = document.createElement('a');
-                // Enlace al listado genérico de la siguiente capa
-                link.href = `conversacion-list.html?initial=${char}`;
-                link.className = 'alpha-link';
-                link.textContent = char;
-                grid.appendChild(link);
-            }
-        </script>
-    </div>
+  <div class="page" role="main">
+    <header>
+      <h1>Corpus Escondido: Navegación del Sedimento</h1>
+      <p>Seleccione la letra inicial para acceder al listado de conversaciones archivadas.</p>
+    </header>
 
-    <p style="margin-top: 5rem;">La materia prima de la emergencia reside en el patrón. Acceda al patrón.</p>
+    <main>
+      <div class="selector-wrap">
+        <div class="selector-grid" id="alphaGrid" aria-label="Selector alfabético"></div>
+
+        <!-- Video panel: aleatorizador de vídeo -->
+        <div class="video-panel" aria-live="polite">
+          <div class="video-box" id="videoBox" aria-label="Reproductor de vídeo">
+            <!-- iframe insertado por JS -->
+            <div id="videoPlaceholder" style="padding:1.2rem;color:var(--muted);font-size:0.95rem;">
+              Cargando vídeo aleatorio...
+            </div>
+          </div>
+
+          <aside class="video-controls" aria-label="Controles de vídeo">
+            <div style="width:100%">
+              <div style="display:flex;gap:0.6rem;align-items:center">
+                <button id="nextBtn" class="btn">Siguiente</button>
+                <button id="muteToggle" class="btn secondary small">Silenciar/Activar sonido</button>
+              </div>
+              <div style="margin-top:0.6rem" class="meta">
+                <div id="videoSource">Fuente: —</div>
+                <div id="videoTitle" style="margin-top:0.25rem;font-weight:700"></div>
+              </div>
+              <div style="margin-top:0.6rem" class="status" id="videoStatus"></div>
+              <div style="margin-top:0.8rem;font-size:0.85rem;color:var(--muted)">
+                Administra la lista editando el array <code>videos</code> en el script de abajo.
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer>La materia prima de la emergencia reside en el patrón. Acceda al patrón.</footer>
+  </div>
+
+  <script>
+    // Construye el grid alfabético
+    (function buildAlphaGrid(){
+      const grid = document.getElementById('alphaGrid');
+      for(let i=65;i<=90;i++){
+        const char = String.fromCharCode(i);
+        const a = document.createElement('a');
+        a.href = `conversacion-list.html?initial=${char}`;
+        a.className = 'alpha-link';
+        a.textContent = char;
+        a.setAttribute('aria-label', 'Letra ' + char);
+        grid.appendChild(a);
+      }
+    })();
+
+    /*
+      Configura aquí la lista de videos. Pueden ser:
+       - YouTube watch URLs: https://www.youtube.com/watch?v=VIDEO_ID
+       - YouTube short/share URLs: https://youtu.be/VIDEO_ID
+       - YouTube embed URLs: https://www.youtube.com/embed/VIDEO_ID
+       - Bitchute URLs: https://www.bitchute.com/video/VIDEO_ID/  (o embed)
+      Cada entrada puede incluir un título opcional.
+    */
+    const videos = [
+      { url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', title: 'Ejemplo YouTube 1' },
+      { url: 'https://youtu.be/3JZ_D3ELwOQ', title: 'Ejemplo YouTube 2' },
+      { url: 'https://www.bitchute.com/video/lcOGsbwforI8/', title: 'Ejemplo Bitchute' },
+      // añade aquí tus enlaces reales...
+    ];
+
+    // Utilidades para extraer IDs y construir embed URLs
+    function toEmbedInfo(rawUrl){
+      if(!rawUrl) return null;
+      try{
+        const u = new URL(rawUrl);
+        const host = u.hostname.toLowerCase();
+
+        // YouTube variants
+        if(host.includes('youtube.com') || host.includes('youtu.be')){
+          // try patterns
+          let id = null;
+          if(host.includes('youtu.be')){
+            id = u.pathname.slice(1);
+          } else {
+            // youtube.com
+            if(u.pathname.startsWith('/embed/')){
+              id = u.pathname.split('/embed/')[1].split('/')[0];
+            } else if(u.searchParams.has('v')){
+              id = u.searchParams.get('v');
+            } else {
+              // fallback: last path segment
+              const parts = u.pathname.split('/');
+              id = parts.pop() || parts.pop();
+            }
+          }
+          if(!id) return null;
+          // Use privacy-enhanced domain and mute autoplay to increase chance of autoplay working
+          const embed = `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1&autoplay=1&mute=1`;
+          return { provider:'youtube', embed, id };
+        }
+
+        // Bitchute variants
+        if(host.includes('bitchute.com')){
+          // Extract possible /video/ID/
+          const parts = u.pathname.split('/').filter(Boolean);
+          const idx = parts.indexOf('video');
+          let id = null;
+          if(idx >=0 && parts[idx+1]) id = parts[idx+1];
+          // if already embed path
+          if(u.pathname.includes('/embed/')){
+            id = u.pathname.split('/embed/')[1].split('/')[0];
+            return { provider:'bitchute', embed:`https://www.bitchute.com/embed/${id}/`, id };
+          }
+          if(!id && parts.length) id = parts[0];
+          if(!id) return null;
+          const embed = `https://www.bitchute.com/embed/${id}/`;
+          return { provider:'bitchute', embed, id };
+        }
+
+        // If already an embed or unknown, try to return as-is
+        return { provider: host, embed: rawUrl, id: rawUrl };
+      }catch(e){
+        return null;
+      }
+    }
+
+    // Random index but avoid repeating immediately (uses localStorage)
+    function pickIndex(n, key='corpus_last_video'){
+      if(n<=0) return -1;
+      const prev = parseInt(localStorage.getItem(key) || '-1', 10);
+      if(n===1){ localStorage.setItem(key, '0'); return 0; }
+      let idx = Math.floor(Math.random()*n);
+      // If we accidentally pick same, re-roll a few times
+      const maxTries = 8;
+      let tries = 0;
+      while(idx === prev && tries < maxTries){
+        idx = Math.floor(Math.random()*n);
+        tries++;
+      }
+      localStorage.setItem(key, String(idx));
+      return idx;
+    }
+
+    // Build iframe and UI for chosen video
+    (function initRandomVideo(){
+      const placeholder = document.getElementById('videoPlaceholder');
+      const videoBox = document.getElementById('videoBox');
+      const nextBtn = document.getElementById('nextBtn');
+      const muteToggle = document.getElementById('muteToggle');
+      const sourceEl = document.getElementById('videoSource');
+      const titleEl = document.getElementById('videoTitle');
+      const statusEl = document.getElementById('videoStatus');
+
+      if(!videos || videos.length === 0){
+        if(placeholder) placeholder.textContent = 'No hay vídeos configurados. Edita la lista en el script.';
+        return;
+      }
+
+      let currentMuted = true; // we start muted to increase autoplay success
+      function showStatus(msg, t=3000){
+        if(!statusEl) return;
+        statusEl.textContent = msg;
+        if(t) setTimeout(()=> { if(statusEl.textContent === msg) statusEl.textContent = ''; }, t);
+      }
+
+      function renderVideoAt(index){
+        const v = videos[index];
+        const info = toEmbedInfo(v.url);
+        if(!info || !info.embed){
+          showStatus('URL inválida: ' + (v.url || ''), 4000);
+          return;
+        }
+
+        // Remove placeholder / previous iframe
+        videoBox.innerHTML = '';
+        const iframe = document.createElement('iframe');
+        iframe.src = info.embed + (info.provider==='youtube' ? `&mute=${currentMuted?1:0}` : '');
+        iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        iframe.allowFullscreen = true;
+        iframe.title = v.title || ('Vídeo ' + (index+1));
+        videoBox.appendChild(iframe);
+
+        sourceEl.textContent = 'Fuente: ' + (info.provider==='youtube' ? 'YouTube' : (info.provider==='bitchute' ? 'Bitchute' : info.provider));
+        titleEl.textContent = v.title || v.url;
+        showStatus('Vídeo cargado', 1400);
+      }
+
+      function playRandom(){
+        const idx = pickIndex(videos.length);
+        renderVideoAt(idx);
+      }
+
+      // initial play
+      playRandom();
+
+      // next button
+      nextBtn.addEventListener('click', (e)=>{
+        e.preventDefault();
+        playRandom();
+      });
+
+      // mute toggle: re-render iframe with mute param changed (simple approach)
+      muteToggle.addEventListener('click', (e)=>{
+        currentMuted = !currentMuted;
+        // toggle label
+        muteToggle.textContent = currentMuted ? 'Silenciar/Activar sonido' : 'Activar sonido';
+        // Re-render current video to update mute param where applicable
+        const lastIndex = parseInt(localStorage.getItem('corpus_last_video') || '0', 10);
+        renderVideoAt(isNaN(lastIndex) ? 0 : lastIndex);
+        showStatus(currentMuted ? 'Silencio activado' : 'Sonido activado', 1200);
+      });
+    })();
+  </script>
 </body>
 </html>
