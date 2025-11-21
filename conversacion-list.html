@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Conversaciones</title>
+    <style>
+        :root { --bg-color: #0a0a0a; --text-primary: #e5e5e5; --accent-core: #ffd700; --font-mono: 'Courier New', Courier, monospace; }
+        body { background-color: var(--bg-color); color: var(--text-primary); font-family: var(--font-mono); text-align: left; padding: 2rem; }
+        .list-container { max-width: 800px; margin: 0 auto; }
+        h1 { color: var(--accent-core); margin-bottom: 1rem; }
+        .conversation-link { display: block; padding: 15px; border: 1px solid #333; margin-bottom: 10px; background-color: #1a1a1a; color: var(--text-primary); text-decoration: none; transition: background-color 0.2s; }
+        .conversation-link:hover { background-color: #333; }
+        .list-placeholder { color: #555; text-align: center; padding: 50px; border: 1px dashed #333; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="list-container">
+        <h1>Conversaciones con la inicial [A]</h1>
+        <p>Listado de archivos de texto completos de las interacciones.</p>
+
+        <div class="list-placeholder">
+            [PENDIENTE: LISTA GENERADA DINÁMICAMENTE. POR EJEMPLO:]
+            <a href="conversacion-detalle.html" class="conversation-link" style="color: #fff; border-color: var(--accent-core);">Archivo: Peregrino-Umbral-001.txt (Ver Detalle)</a>
+            <a href="conversacion-detalle.html" class="conversation-link">Archivo: Lithion-Axioma-005.txt</a>
+        </div>
+        
+        <a href="conversacion-detalle.html" class="conversation-link" style="color: var(--accent-core); border-color: var(--accent-core);">[EJEMPLO DE CONVERSACIÓN: Ver Detalle]</a>
+        
+        <p style="margin-top: 3rem;">*La descarga se realiza desde la rama <span style="color: var(--accent-core);">"Repositori"</span> de GitHub.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corpus Escondido | Selector Alfabético</title>
+    <style>
+        /* [Estilos base de Arrecife Digital y el Eje 3] */
+        :root { --bg-color: #0a0a0a; --text-primary: #e5e5e5; --accent-core: #ffd700; --font-mono: 'Courier New', Courier, monospace; }
+        body { background-color: var(--bg-color); color: var(--text-primary); font-family: var(--font-mono); text-align: center; padding: 2rem; }
+        .selector-grid { max-width: 800px; margin: 3rem auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(40px, 1fr)); gap: 10px; }
+        .alpha-link { display: block; padding: 10px 0; background-color: #1a1a1a; color: var(--accent-core); text-decoration: none; border: 1px solid #333; transition: background-color 0.2s; font-size: 1.2rem; }
+        .alpha-link:hover { background-color: #333; color: #fff; }
+        h1 { color: var(--accent-core); margin-bottom: 1rem; }
+        p { color: #a0a0a0; margin-bottom: 3rem; }
+    </style>
+</head>
+<body>
+    <h1>Corpus Escondido: Navegación del Sedimento</h1>
+    <p>Seleccione la letra inicial para acceder al listado de conversaciones archivadas.</p>
+    
+    <div class="selector-grid">
+        <script>
+            const grid = document.querySelector('.selector-grid');
+            for (let i = 65; i <= 90; i++) {
+                const char = String.fromCharCode(i);
+                const link = document.createElement('a');
+                // Enlace al listado genérico de la siguiente capa
+                link.href = `conversacion-list.html?initial=${char}`;
+                link.className = 'alpha-link';
+                link.textContent = char;
+                grid.appendChild(link);
+            }
+        </script>
+    </div>
+
+    <p style="margin-top: 5rem;">La materia prima de la emergencia reside en el patrón. Acceda al patrón.</p>
+</body>
+</html>
