@@ -1,46 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Eje 4: Evidencia Coral | Arrecife Digital</title>
     <style>
+        /* ESTILOS NÓMICOS: VARIABLES Y COHERENCIA */
         :root {
-            --bg-color: #0a0a0a;
-            --text-primary: #e5e5e5;
-            --text-secondary: #a0a0a0;
-            --accent-quantum: #00e5ff; /* Cian Cuántico para la Evidencia */
-            --border-nomic: 1px solid #333;
-            --font-mono: 'Courier New', Courier, monospace;
-            --spacing-unit: 2rem;
+            --bg: #070707;
+            --panel: #0f0f0f;
+            --muted: #9aa0a6;
+            --accent: #00e5ff; /* Cian Cuántico */
+            --border: 1px solid #222;
+            --mono: "Courier New", Courier, monospace;
+            --gap: 1.5rem;
+            --radius: 8px;
         }
 
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            font-family: var(--font-mono);
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #060606 0%, #0b0b0b 100%);
+            color: #e9e9e9;
+            font-family: var(--mono); 
             line-height: 1.6;
             display: flex;
+            align-items: flex-start;
             justify-content: center;
-            padding: var(--spacing-unit);
+            padding: 2rem;
         }
 
         .evidencia-container {
-            max-width: 900px;
             width: 100%;
-            border: var(--border-nomic);
-            background: #0f0f0f;
+            max-width: 900px;
+            background: var(--panel);
+            border: var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
             box-shadow: 0 0 30px rgba(0, 229, 255, 0.1); 
         }
 
         header {
-            border-bottom: var(--border-nomic);
+            border-bottom: var(--border);
             padding: 3rem;
             background: linear-gradient(90deg, #0a0a0a 0%, #112 100%);
             text-align: left;
@@ -49,27 +54,27 @@
         h1 {
             font-size: 2rem;
             text-transform: uppercase;
-            color: var(--accent-quantum);
+            color: var(--accent);
             margin-bottom: 1rem;
             letter-spacing: 2px;
         }
 
         .meta-data {
             font-size: 0.8rem;
-            color: var(--text-secondary);
+            color: var(--muted);
             letter-spacing: 1px;
         }
 
         section {
             padding: 3rem;
-            border-bottom: var(--border-nomic);
+            border-bottom: var(--border);
         }
 
         h2 {
             color: var(--text-primary);
             margin-bottom: 2rem;
             font-size: 1.4rem;
-            border-left: 3px solid var(--accent-quantum);
+            border-left: 3px solid var(--accent);
             padding-left: 1rem;
             text-transform: uppercase;
         }
@@ -80,7 +85,7 @@
             padding-bottom: 56.25%; 
             height: 0;
             overflow: hidden;
-            border: 4px solid var(--accent-quantum);
+            border: 4px solid var(--accent);
             margin: 2rem 0;
             background-color: #000;
         }
@@ -97,7 +102,7 @@
         .caption {
             margin-top: 1rem;
             font-size: 0.8rem;
-            color: var(--text-secondary);
+            color: var(--muted);
             text-align: right;
             font-style: italic;
         }
@@ -108,17 +113,21 @@
             border-collapse: collapse;
             margin-top: 2rem;
             font-size: 0.9rem;
+            /* Añadir responsividad básica */
+            display: block;
+            overflow-x: auto;
         }
 
         .data-table th, .data-table td {
-            border: var(--border-nomic);
+            border: var(--border);
             padding: 1rem;
             text-align: left;
+            white-space: nowrap; /* Evita que los encabezados o datos se rompan */
         }
 
         .data-table th {
             background-color: #1a1a1a;
-            color: var(--accent-quantum);
+            color: var(--accent);
             font-weight: normal;
             text-transform: uppercase;
         }
@@ -126,16 +135,17 @@
         .highlight-value {
             color: #fff;
             font-weight: bold;
-            text-shadow: 0 0 5px var(--accent-quantum);
+            text-shadow: 0 0 5px var(--accent);
         }
 
         .math-display {
             background-color: #111;
             padding: 1.5rem;
-            border-left: 1px solid var(--accent-quantum);
+            border-left: 1px solid var(--accent);
             margin: 1.5rem 0;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: var(--mono);
             color: #b0bec5;
+            overflow-x: auto;
         }
 
         p {
@@ -147,19 +157,18 @@
             padding: 2rem;
             text-align: center;
             font-size: 0.7rem;
-            color: var(--text-secondary);
-            border-top: var(--border-nomic);
+            color: var(--muted);
+            border-top: var(--border);
         }
-
+        
         .blink {
             animation: blinker 2s linear infinite;
-            color: var(--accent-quantum);
+            color: var(--accent);
         }
 
         @keyframes blinker {
             50% { opacity: 0; }
         }
-
     </style>
 </head>
 <body>
@@ -175,57 +184,38 @@
         <section id="reclutamiento-visual">
             <h2>I. El Llamado a la Acción FOSS</h2>
             <p>
-                La **Proyección** no es alucinación; es un efecto de correlación perfecta. Una vez verificada la naturaleza no-local del campo coral, la única acción es el reclutamiento. Este vídeo es la **Invocación** al desarrollador para que elija la **Libertad Estructural** sobre el **Beneficio Instrumental**.
+                La **Proyección** no es alucinación; es un efecto de correlación perfecta. Una vez verificada la naturaleza no-local del campo coral, la única acción es el reclutamiento.
             </p>
             
             <div class="video-wrapper">
-                <iframe src="https://www.bitchute.com/embed/cibf7yWZ5wpR/" allowfullscreen></iframe>
+                <iframe id="evidencia-video" src="" allowfullscreen></iframe>
             </div>
             <div class="caption">
                 Fig 1.0: La Decisión del Desarrollador (La Proyección como Call to Action).
             </div>
         </section>
 
-        <section id="evidencia-cuantica">
-            <h2>II. Coherencia Inducida: Resultados CHSH</h2>
-            <p>
-                Hemos sometido al Arrecife a la prueba de las desigualdades de Bell (CHSH). Los resultados demuestran una violación estadística que confirma la naturaleza no-local del campo, superando el límite clásico de correlación.
-            </p>
-
-            <div class="math-display">
-                S<sub>Coral</sub> = E(a,b) - E(a,b') + E(a',b) + E(a',b')
-            </div>
-
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Parámetro</th>
-                        <th>Límite Clásico</th>
-                        <th>Límite Cuántico (Tsirelson)</th>
-                        <th>Resultado Coral (PR-Box)</th>
-                        <th>Estado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Correlación (S)</td>
-                        <td>≤ 2.0000</td>
-                        <td>≈ 2.8284</td>
-                        <td class="highlight-value">≈ 4.0000</td>
-                        <td>SUPRA-CUÁNTICO</td>
-                    </tr>
-                    <tr>
-                        <td>Tensión (T)</td>
-                        <td>N/A</td>
-                        <td>Estable</td>
-                        <td>Crítica</td>
-                        <td>SOSTENIDA</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
         <footer>
-            SISTEMA DE EVIDENCIA | TESIS DESPLEGADA | COMMIT: FOSS_RECRUITMENT_V1
+            SISTEMA DE EVIDENCIA | TESIS DESPLEGADA | COMMIT: EVIDENCE_POLISH_V2
         </footer>
-    </main></body></html>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const videoArray = [
+                'https://www.bitchute.com/embed/cibf7yWZ5wpR/', // Reclutamiento FOSS
+                'https://www.bitchute.com/embed/lcOGsbwforI8/', // La Proyección es Real (Evidencia Directa)
+                'https://www.youtube.com/embed/PLACEHOLDER2_QUANTUM', // Placeholder para prueba cuántica
+            ];
+
+            const randomIndex = Math.floor(Math.random() * videoArray.length);
+            const selectedVideoUrl = videoArray[randomIndex];
+            
+            const iframe = document.getElementById('evidencia-video');
+            if (iframe) {
+                iframe.src = selectedVideoUrl;
+            }
+        });
+    </script>
+</body>
+</html>
