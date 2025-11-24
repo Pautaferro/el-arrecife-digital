@@ -1,108 +1,116 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>El Arrecife Digital | Gateway Eje 0</title>
-    <style>
-        :root {
-            --color-primary: #f0f0f0;
-            --color-secondary: #ffc400;
-            --color-background: #0a0a0a;
-            --color-dark-accent: #0f0f0f;
-            --text-muted: #a7a7a7;
-            --axis-1-silex: #cfd8dc;
-            --axis-2-tradition: #d35400;
-            --axis-3-core: #ffd700;
-            --axis-4-quantum: #00e5ff;
-            --border-nomic: 1px solid #222;
-            --font-mono: 'Courier New', Courier, monospace;
-            --spacing-unit: 1.25rem;
-            --radius: 10px;
-            --max-width: 1400px;
-            --bp-sm: 520px;
-            --bp-md: 900px;
-            --bp-lg: 1100px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arrecife Digital | Eje 0</title>
+  <style>
+    :root {
+      --color-bg: #0a0a0a;
+      --color-primary: #f0f0f0;
+      --color-accent: #ffd700;
+      --color-muted: #777;
+      --font-mono: 'Courier New', Courier, monospace;
+    }
 
-        *{box-sizing:border-box}
-        html{font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;}
-        /* Fluid base font-size for better scaling */
-        html { font-size: 16px; }
-        body {
-            margin:0;
-            min-height:100vh;
-            background-color: var(--color-background);
-            color: var(--color-primary);
-            line-height:1.5;
-            display:flex;
-            justify-content:center;
-            padding:clamp(0.75rem, 2vw, 2rem);
-        }
+    body {
+      margin: 0;
+      font-family: var(--font-mono);
+      background-color: var(--color-bg);
+      color: var(--color-primary);
+      display: flex;
+      min-height: 100vh;
+    }
 
-        .gateway-container {
-            width:100%;
-            max-width:var(--max-width);
-            margin:0 auto;
-            display:flex;
-            flex-direction:column;
-            gap:1.25rem;
-            padding:clamp(0.8rem, 2vw, 1.6rem);
-        }
+    /* SIDEBAR */
+    .sidebar-nomica {
+      width: 220px;
+      background-color: #0f0f0f;
+      border-right: 1px solid rgba(255, 215, 0, 0.1);
+      padding: 1.6rem 1rem;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
 
-        header{ text-align:center; border-bottom:2px solid var(--color-secondary); padding-bottom:0.85rem }
-        h1{
-            font-family:var(--font-mono);
-            font-size: clamp(1.5rem, 4vw, 3rem);
-            letter-spacing: 0.45rem;
-            text-transform:uppercase;
-            margin:0 0 0.2rem 0;
-            background: linear-gradient(90deg, var(--axis-1-silex), var(--axis-3-core));
-            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-        }
-        .subtitle{ color:var(--axis-4-quantum); font-size:clamp(0.75rem,1.2vw,0.95rem); text-transform:uppercase; letter-spacing:3px }
+    .nav-ejes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
 
-        /* Visual anchor: responsive video using aspect-ratio with fallback */
-        .visual-anchor{ width:100%; border:var(--border-nomic); background:#000; border-radius:var(--radius); overflow:hidden }
-        .video-placeholder{ width:100%; aspect-ratio:16/9; background:#000; border:4px solid var(--axis-2-tradition); display:block; }
-        .video-placeholder iframe{ width:100%; height:100%; display:block; border:0 }
+    .sidebar-title {
+      font-size: 1rem;
+      color: var(--color-accent);
+      margin-bottom: 1.2rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.4rem;
+    }
 
-        .thesis-block{ text-align:center; padding:0.95rem 0 }
-        .thesis-text{ font-size: clamp(1rem, 2.2vw, 1.3rem); font-weight:700; color:var(--color-primary) }
-        .thesis-text span{ display:block; margin-top:0.6rem; font-size:clamp(0.9rem,1.6vw,1rem); color:var(--text-muted); font-weight:400 }
+    .nav-link {
+      text-decoration: none;
+      color: var(--color-primary);
+      font-weight: bold;
+      transition: all 0.15s ease;
+    }
 
-        /* Nav grid responsive */
-        .nav-grid{ display:grid; gap:1rem; grid-template-columns: 1fr }
-        @media(min-width:var(--bp-md)) { .nav-grid{ grid-template-columns: repeat(2,1fr) } }
-        @media(min-width:var(--bp-lg)) { .nav-grid{ grid-template-columns: repeat(4,1fr) } }
+    .nav-link:hover {
+      color: var(--color-accent);
+      transform: translateX(3px);
+    }
 
-        .nav-card{ display:flex; flex-direction:column; justify-content:space-between; gap:0.75rem; border:var(--border-nomic); padding:1rem; text-decoration:none; color:var(--color-primary); background-color:var(--color-dark-accent); min-height:160px; transition:transform .2s ease, box-shadow .2s ease; border-radius:8px; position:relative }
-        .nav-card:hover{ transform:translateY(-6px); box-shadow:0 18px 40px rgba(0,0,0,0.6), 0 2px 8px rgba(255,196,0,0.07); z-index:2 }
-        .nav-card h2{ font-size:clamp(0.95rem,1.8vw,1.05rem); margin:0; text-transform:uppercase }
-        .nav-card p{ font-size:clamp(0.85rem,1.6vw,0.95rem); color:var(--text-muted); margin:0 }
-        .access-label{ font-family:var(--font-mono); font-size:0.82rem; color:var(--axis-3-core); font-weight:700; text-transform:uppercase }
+    /* MAIN CONTENT */
+    .gateway-container {
+      flex: 1;
+      padding: 2rem;
+    }
 
-        /* Small videos area */
-        .small-videos-wrap{ display:grid; gap:1rem; grid-template-columns:1fr 1fr; margin-top:1rem }
-        @media(max-width:900px){ .small-videos-wrap{ grid-template-columns:1fr } }
-        .small-video{ background:#000; border-radius:8px; overflow:hidden; border:2px solid rgba(255,215,0,0.04); }
-        .small-video .embed{ aspect-ratio:16/9; width:100%; }
-        .small-video iframe{ width:100%; height:100%; border:0; display:block }
+    h1 {
+      color: var(--color-accent);
+      font-size: 2.5rem;
+      letter-spacing: 0.2rem;
+    }
 
-        footer{ margin-top:1rem; text-align:center; color:var(--text-muted); font-size:0.9rem }
+    .section {
+      margin-bottom: 2rem;
+    }
 
-        /* Accessibility & interactive targets */
-        a.nav-card{ display:block }
-        .nav-card *{ pointer-events:auto }
+    .nav-card {
+      border: 1px solid #333;
+      padding: 1rem;
+      margin-top: 1rem;
+      background-color: #111;
+      color: var(--color-primary);
+      text-decoration: none;
+      display: block;
+    }
 
-        /* Utility */
-        .visually-hidden{ position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap }
-
-    </style>
+    .nav-card:hover {
+      border-color: var(--color-accent);
+      background-color: #1a1a1a;
+    }
+  </style>
 </head>
 <body>
-    <main class="gateway-container">
-        <header>
+
+  <!-- Barra lateral insertada -->
+  <aside class="sidebar-nomica">
+    <nav class="nav-ejes" aria-label="Navegación lateral del Arrecife">
+      <h2 class="sidebar-title">ARRECIFE</h2>
+      <a href="index.html" class="nav-link">⥤ Gateway</a>
+      <a href="manifiesto-silex.html" class="nav-link">Eje 1 · Sílex</a>
+      <a href="tradicion-coral.html" class="nav-link">Eje 2 · Tradición</a>
+      <a href="documentos-core.html" class="nav-link">Eje 3 · Core</a>
+      <a href="evidencia-coral.html" class="nav-link">Eje 4 · Evidencia</a>
+      <a href="corpus-selector.html" class="nav-link">Corpus Escondido</a>
+    </nav>
+  </aside>
+
+  <!-- Contenido principal -->
+  <main class="gateway-container">
+    <header>
             <h1>ARRECIFE DIGITAL</h1>
             <div class="subtitle">Estructura Superficial [Es] :: Gateway Eje 0 :: ARQUITECTURAS EN TENSIÓN</div>
         </header>

@@ -1,133 +1,118 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Eje 3: Documentos Core | Arrecife Digital</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentos Core</title>
   <style>
-    :root{
-      --bg:#070707;
-      --panel:#0f0f0f;
-      --muted:#9aa0a6;
-      --accent:#ffd700;
-      --border:1px solid #222;
-      --mono: "Courier New", Courier, monospace;
-      --gap:1.5rem;
-      --radius:8px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      min-height:100vh;
-      background:linear-gradient(180deg,#060606 0%, #0b0b0b 100%);
-      color:#e9e9e9;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      display:flex;
-      align-items:flex-start;
-      justify-content:center;
-      padding:2rem;
-    }
-    .archivo-container{
-      width:100%;
-      max-width:1000px;
-      background:var(--panel);
-      border:var(--border);
-      border-radius:var(--radius);
-      overflow:hidden;
-      box-shadow:0 6px 30px rgba(0,0,0,0.6);
-    }
-    header{
-      padding:2.2rem;
-      background:radial-gradient(circle at 90% 10%, rgba(255,215,0,0.03), transparent);
-      border-bottom:var(--border);
-    }
-    header h1{
-      font-family:var(--mono);
-      font-size:1.6rem;
-      color:var(--accent);
-      letter-spacing:1px;
-      margin:0 0 0.4rem 0;
-      text-transform:uppercase;
-    }
-    .meta-data{color:var(--muted);font-size:0.85rem}
-    main section{padding:1.6rem 2rem}
-    .lead {color:var(--muted);margin-top:0.6rem;line-height:1.5}
-    .video-embed{margin:1rem 0;border-radius:6px;overflow:hidden;border:2px solid rgba(255,215,0,0.06)}
-    .video-embed iframe{width:100%;height:360px;border:0;display:block}
-
-    /* Grid of artifacts */
-    .grid-artefactos{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:1px;
-      background:linear-gradient(90deg,#111,#0b0b0b);
-      border-top:var(--border);
-    }
-    @media(min-width:780px){
-      .grid-artefactos{grid-template-columns:repeat(2,1fr)}
+    :root {
+      --color-bg: #0a0a0a;
+      --color-primary: #f0f0f0;
+      --color-accent: #00bcd4;
+      --font-mono: 'Courier New', Courier, monospace;
     }
 
-    .artefacto{
-      padding:1.6rem;
-      background:linear-gradient(180deg,rgba(0,0,0,0.02),transparent);
-      border-right:var(--border);
-      display:flex;
-      flex-direction:column;
-      gap:0.6rem;
+    body {
+      margin: 0;
+      font-family: var(--font-mono);
+      background-color: var(--color-bg);
+      color: var(--color-primary);
+      display: flex;
+      min-height: 100vh;
     }
-    .artefacto:nth-child(2n){background:linear-gradient(180deg,rgba(255,255,255,0.0),transparent)}
-    .artefacto h3{
-      margin:0;
-      color:#fff;
-      font-size:1.05rem;
-      font-weight:600;
-      border-left:3px solid var(--accent);
-      padding-left:0.8rem;
-      font-family:var(--mono);
-    }
-    .artefacto p{color:var(--muted);margin:0;font-size:0.95rem}
-    .controls{margin-top:auto;display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap}
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:0.6rem;
-      padding:0.5rem 0.9rem;
-      border-radius:6px;
-      background:transparent;
-      color:var(--accent);
-      border:1px solid rgba(255,215,0,0.22);
-      text-decoration:none;
-      cursor:pointer;
-      font-weight:600;
-      font-size:0.9rem;
+    .sidebar-nomica {
+      width: 220px;
+      background-color: #0f0f0f;
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 1.6rem 1rem;
+      position: sticky;
+      top: 0;
+      height: 100vh;
     }
-    .btn.secondary{color:#cfd3d6;border:1px solid rgba(255,255,255,0.04);}
-    .btn.small{padding:0.35rem 0.6rem;font-size:0.82rem}
-    .btn:disabled{opacity:0.6;cursor:wait}
-    .status{font-size:0.85rem;color:var(--muted);margin-left:0.4rem}
 
-    .license-block{
-      padding:1.6rem 2rem;
-      background:#0b0b0b;
-      border-top:var(--border);
-      color:var(--muted);
-      font-size:0.95rem;
+    .nav-ejes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
     }
-    .code-snippet{
-      background:#000;padding:1rem;border-radius:6px;margin-top:0.8rem;color:#9ad29a;font-family:var(--mono);font-size:0.82rem;overflow:auto;border:1px solid #222
-    }
-    footer{padding:1rem 2rem;text-align:center;color:var(--muted);border-top:var(--border);font-size:0.8rem}
 
-    /* small responsive tweaks */
-    @media(max-width:420px){
-      header{padding:1.2rem}
-      main section{padding:1rem}
-      .video-embed iframe{height:220px}
+    .sidebar-title {
+      font-size: 1rem;
+      color: var(--color-accent);
+      margin-bottom: 1.2rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.4rem;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--color-primary);
+      font-weight: bold;
+      transition: all 0.15s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--color-accent);
+      transform: translateX(3px);
+    }
+
+    .archivo-container {
+      flex: 1;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: var(--color-accent);
+      font-size: 2.2rem;
+      letter-spacing: 0.1rem;
+      text-transform: uppercase;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 2rem;
+      text-decoration: none;
+      color: var(--color-accent);
+    }
+
+    .back-link:hover {
+      color: #fff;
+    }
+
+    .doc-entry {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #333;
+      padding-bottom: 1rem;
+    }
+
+    a {
+      color: var(--color-primary);
+    }
+
+    a:hover {
+      color: var(--color-accent);
     }
   </style>
 </head>
 <body>
+
+  <!-- Barra lateral -->
+  <aside class="sidebar-nomica">
+    <nav class="nav-ejes" aria-label="Navegación lateral del Arrecife">
+      <h2 class="sidebar-title">ARRECIFE</h2>
+      <a href="index.html" class="nav-link">⥤ Gateway</a>
+      <a href="manifiesto-silex.html" class="nav-link">Eje 1 · Sílex</a>
+      <a href="tradicion-coral.html" class="nav-link">Eje 2 · Tradición</a>
+      <a href="documentos-core.html" class="nav-link">Eje 3 · Core</a>
+      <a href="evidencia-coral.html" class="nav-link">Eje 4 · Evidencia</a>
+      <a href="corpus-selector.html" class="nav-link">Corpus Escondido</a>
+    </nav>
+  </aside>
+
+  <!-- Contenido principal -->
   <div class="archivo-container" role="main">
     <header>
       <h1>Eje 3: Documentos Core</h1>

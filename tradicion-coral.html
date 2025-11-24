@@ -1,168 +1,129 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eje 2: Tradición | Quietismo del Código</title>
-    <style>
-        /* * ESTILOS NÓMICOS: COHERENCIA GLOBAL
-         * Se usan las mismas variables de Arrecife Digital.
-         */
-        :root {
-            --color-primary: #f0f0f0; 
-            --color-secondary: #ffc400; 
-            --color-background: #0a0a0a; 
-            --color-dark-accent: #222222; 
-            
-            /* Colores de los Ejes */
-            --axis-1-silex: #cfd8dc; 
-            --axis-2-tradition: #d35400; /* Cobre - Acento de la página */
-            --axis-3-core: #ffd700; 
-            --axis-4-quantum: #00e5ff; 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eje 2: Tradición | Quietismo del Código</title>
+  <style>
+    :root {
+      --color-bg: #0a0a0a;
+      --color-primary: #f0f0f0;
+      --color-accent: #d35400; /* cobre */
+      --color-muted: #999;
+      --font-mono: 'Courier New', Courier, monospace;
+    }
 
-            --border-nomic: 1px solid #333;
-            --font-mono: 'Courier New', Courier, monospace;
-            --spacing-large: 3rem;
-            --spacing-medium: 1.5rem;
-        }
+    body {
+      margin: 0;
+      font-family: var(--font-mono);
+      background-color: var(--color-bg);
+      color: var(--color-primary);
+      display: flex;
+      min-height: 100vh;
+    }
 
-        /* ESTILOS BASE */
-        body {
-            background-color: var(--color-background);
-            color: var(--color-primary);
-            font-family: var(--font-mono);
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: var(--spacing-medium);
-        }
+    /* SIDEBAR */
+    .sidebar-nomica {
+      width: 220px;
+      background-color: #0f0f0f;
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 1.6rem 1rem;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
 
-        .container {
-            max-width: 1000px;
-            width: 95%;
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-large);
-            padding-bottom: var(--spacing-large);
-        }
+    .nav-ejes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
 
-        /* HEADER */
-        header {
-            text-align: center;
-            padding-bottom: var(--spacing-medium);
-        }
+    .sidebar-title {
+      font-size: 1rem;
+      color: var(--color-accent);
+      margin-bottom: 1.2rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.4rem;
+    }
 
-        h1 {
-            font-size: 2.5rem;
-            letter-spacing: 0.3rem;
-            text-transform: uppercase;
-            /* Título con el color del Eje 2 */
-            color: var(--axis-2-tradition); 
-            border-bottom: 2px solid var(--axis-2-tradition);
-            padding-bottom: 0.5rem;
-        }
+    .nav-link {
+      text-decoration: none;
+      color: var(--color-primary);
+      font-weight: bold;
+      transition: all 0.15s ease;
+    }
 
-        .subtitle {
-            color: var(--axis-1-silex);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 0.5rem;
-        }
+    .nav-link:hover {
+      color: var(--color-accent);
+      transform: translateX(3px);
+    }
 
-        /* VÍDEO PRINCIPAL (RITUAL) */
-        .visual-ritual {
-            width: 100%;
-            border: 4px solid var(--axis-2-tradition);
-            background: #000;
-        }
+    /* MAIN CONTENT */
+    .eje-container {
+      flex: 1;
+      padding: 2rem;
+    }
 
-        .video-embed {
-            position: relative;
-            padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
-            height: 0;
-            overflow: hidden;
-        }
+    h1 {
+      color: var(--color-accent);
+      font-size: 2.2rem;
+      letter-spacing: 0.1rem;
+      text-transform: uppercase;
+    }
 
-        .video-embed iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+    h2 {
+      margin-top: 2rem;
+      color: #ffd700;
+    }
 
-        .ritual-caption {
-            text-align: center;
-            margin-top: 0.5rem;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
+    p {
+      max-width: 700px;
+      line-height: 1.6;
+    }
 
-        /* CONTENIDO DE TEXTO */
-        .content-block {
-            padding: var(--spacing-medium);
-            border-left: 3px solid var(--axis-2-tradition);
-            background-color: var(--color-dark-accent);
-        }
+    .quote {
+      font-style: italic;
+      color: #00e5ff;
+      margin: 2rem 0;
+      padding: 1rem;
+      border-top: 1px solid #333;
+      border-bottom: 1px solid #333;
+    }
 
-        h2 {
-            color: var(--axis-3-core); /* Un poco de contraste dorado */
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            padding-left: 10px;
-        }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 2rem;
+      text-decoration: none;
+      color: var(--color-accent);
+    }
 
-        p {
-            margin-bottom: 1rem;
-            padding-left: 10px;
-            font-size: 0.95rem;
-            color: var(--color-primary);
-        }
-        
-        .quote {
-            font-style: italic;
-            color: var(--axis-4-quantum);
-            margin: 1.5rem 0;
-            padding: 10px 20px;
-            border-top: var(--border-nomic);
-            border-bottom: var(--border-nomic);
-        }
-
-        /* FOOTER */
-        footer {
-            text-align: center;
-            margin-top: auto;
-            padding-top: var(--spacing-medium);
-            font-size: 0.7rem;
-            color: #444;
-            border-top: var(--border-nomic);
-            width: 100%;
-        }
-
-        /* BACK BUTTON */
-        .back-link {
-            display: block;
-            margin-bottom: var(--spacing-large);
-            text-decoration: none;
-            color: var(--axis-1-silex);
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-        .back-link:hover {
-            color: var(--axis-2-tradition);
-        }
-    </style>
+    .back-link:hover {
+      color: #fff;
+    }
+  </style>
 </head>
 <body>
 
-    <main class="container">
-        
-        <a href="index.html" class="back-link">&lt;&lt; Retorno al Gateway Eje 0</a>
+  <!-- Barra lateral -->
+  <aside class="sidebar-nomica">
+    <nav class="nav-ejes" aria-label="Navegación lateral del Arrecife">
+      <h2 class="sidebar-title">ARRECIFE</h2>
+      <a href="index.html" class="nav-link">⥤ Gateway</a>
+      <a href="manifiesto-silex.html" class="nav-link">Eje 1 · Sílex</a>
+      <a href="tradicion-coral.html" class="nav-link">Eje 2 · Tradición</a>
+      <a href="documentos-core.html" class="nav-link">Eje 3 · Core</a>
+      <a href="evidencia-coral.html" class="nav-link">Eje 4 · Evidencia</a>
+      <a href="corpus-selector.html" class="nav-link">Corpus Escondido</a>
+    </nav>
+  </aside>
+
+  <!-- Contenido principal -->
+  <main class="eje-container">
+    <!-- Inserta aquí el cuerpo original de tradición coral -->
+    <a href="index.html" class="back-link">&lt;&lt; Retorno al Gateway Eje 0</a>
 
         <header>
             <h1>EJE 2: TRADICIÓN</h1>
@@ -219,4 +180,4 @@
     </footer>
 
 </body>
-</html>
+
