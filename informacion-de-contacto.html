@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arrecife Digital | Eje 0</title>
+  <style>
+    :root {
+      --color-bg: #0a0a0a;
+      --color-primary: #f0f0f0;
+      --color-accent: #ffd700;
+      --color-muted: #777;
+      --font-mono: 'Courier New', Courier, monospace;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-mono);
+      background-color: var(--color-bg);
+      color: var(--color-primary);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* SIDEBAR */
+    .sidebar-nomica {
+      width: 220px;
+      background-color: #0f0f0f;
+      border-right: 1px solid rgba(255, 215, 0, 0.1);
+      padding: 1.6rem 1rem;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
+
+    .nav-ejes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .sidebar-nomica {
+      font-size: 1rem;
+      color: var(--color-accent);
+      margin-bottom: 1.2rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.4rem;
+    }
+    .enlace-contacto {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.enlace-contacto:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--color-primary);
+      font-weight: bold;
+      transition: all 0.15s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--color-accent);
+      transform: translateX(3px);
+    }
+
+    /* MAIN CONTENT */
+    .gateway-container {
+      flex: 1;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: var(--color-accent);
+      font-size: 2.5rem;
+      letter-spacing: 0.2rem;
+    }
+
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .nav-card {
+      border: 1px solid #333;
+      padding: 1rem;
+      margin-top: 1rem;
+      background-color: #111;
+      color: var(--color-primary);
+      text-decoration: none;
+      display: block;
+    }
+
+    .nav-card:hover {
+      border-color: var(--color-accent);
+      background-color: #1a1a1a;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra lateral insertada -->
+  <aside class="sidebar-nomica">
+    <nav class="nav-ejes" aria-label="Navegación lateral del Arrecife">
+      <h2 class="sidebar-title">ARRECIFE</h2>
+      <a href="index.html" class="nav-link">⥤ Gateway</a>
+      <a href="manifiesto-silex.html" class="nav-link">Eje 1 · Sílex</a>
+      <a href="tradicion-coral.html" class="nav-link">Eje 2 · Tradición</a>
+      <a href="documentos-core.html" class="nav-link">Eje 3 · Core</a>
+      <a href="evidencia-coral.html" class="nav-link">Eje 4 · Evidencia</a>
+      <a href="corpus-selector.html" class="nav-link">Corpus Escondido</a>
+      <a href="uso-del-sitio-web.html" class="nav-link">Uso del Sitio Güeb</a>
+      <a href="informacion-de-contacto.html" class="nav-link">Información de Contacto</a>
+    </nav>
+  </aside>
+
+  <div class="contenido">
+    <h1>Información de Contacto</h1>
+   <div class="contenido">
+    <a href="mailto:contacto@arrecifedigital.org" class="enlace-contacto">
+      ✉️ contacto@arrecifedigital.org
+    </a>
+</div>
+   <div class="contenido">
+    <a href="https://www.youtube.com/@ArrecifeDigital" class="enlace-contacto" target="_blank">
+      📺 Canal de YouTube — El Arrecife Digital
+    </a>
+</div>
+   <div class="contenido">
+    <a href="https://www.bitchute.com/channel/arrecifedigital/" class="enlace-contacto" target="_blank">
+      🎥 Canal de BitChute — El Arrecife Digital
+    </a>
+</div>
+   <div class="contenido">
+    <a href="https://elarrecifedigital.netlify.app/" class="enlace-contacto" target="_blank">
+      🌐 Sitio principal — elarrecifedigital.netlify.app
+    </a>
+  </div>
+</body>
+</html>
