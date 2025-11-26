@@ -1,185 +1,475 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Selector de Corpus</title>
-  <style>
-    :root {
-      --color-bg: #0a0a0a;
-      --color-primary: #f0f0f0;
-      --color-accent: #ff4081;
-      --font-mono: 'Courier New', Courier, monospace;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selector del Corpus | Arrecife Digital</title>
+    <style>
+        :root {
+            --bg-color: #050505;
+            --sidebar-bg: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-muted: #888;
+            --accent-coral: #ff4081;
+            --accent-cyan: #00e5ff;
+            --border-nomic: 1px solid #222;
+            --font-mono: 'Courier New', Courier, monospace;
+            --spacing-unit: 2rem;
+        }
 
-    body {
-      margin: 0;
-      font-family: var(--font-mono);
-      background-color: var(--color-bg);
-      color: var(--color-primary);
-      display: flex;
-      min-height: 100vh;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    .sidebar-nomica {
-      width: 220px;
-      background-color: #0f0f0f;
-      border-right: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 1.6rem 1rem;
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            display: flex;
+            min-height: 100vh;
+        }
 
-    .nav-ejes {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
+        /* SIDEBAR */
+        .sidebar-nomica {
+            width: 250px;
+            background-color: var(--sidebar-bg);
+            border-right: var(--border-nomic);
+            padding: var(--spacing-unit) 1.5rem;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
 
-    .sidebar-title {
-      font-size: 1rem;
-      color: var(--color-accent);
-      margin-bottom: 1.2rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      padding-bottom: 0.4rem;
-    }
+        .sidebar-title {
+            color: var(--accent-coral);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 0.6rem;
+        }
 
-    .nav-link {
-      display: block;
-      text-decoration: none;
-      color: var(--color-primary);
-      font-weight: bold;
-      padding: 0.3rem 0;
-      transition: all 0.15s ease;
-    }
+        .nav-ejes {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
 
-    .nav-link:hover {
-      color: var(--color-accent);
-      transform: translateX(3px);
-    }
+        .nav-link {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #1a1a1a;
+            transition: color 0.3s ease, padding-left 0.3s ease;
+            font-size: 0.9rem;
+        }
 
-    main {
-      flex: 1;
-      padding: 2rem;
-    }
+        .nav-link:hover {
+            color: var(--accent-cyan);
+            padding-left: 8px;
+        }
 
-    h1 {
-      color: var(--color-accent);
-      font-size: 2.2rem;
-      text-transform: uppercase;
-    }
+        .nav-link.active {
+            color: var(--accent-cyan);
+            font-weight: bold;
+            border-bottom-color: var(--accent-cyan);
+        }
 
-    .selector-wrap {
-      margin-top: 2rem;
-    }
+        /* MAIN CONTENT */
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: var(--spacing-unit) 3rem;
+        }
 
-    .corpus-container {
-      display: inline-block;
-      text-align: center;
-      margin: 0.5rem;
-    }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            text-decoration: none;
+            color: var(--accent-coral);
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
 
-    .corpus-btn {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      background-color: #1a1a1a;
-      color: var(--color-primary);
-      text-decoration: none;
-      border: 1px solid #333;
-      transition: all 0.2s ease;
-    }
+        .back-link:hover {
+            color: var(--text-primary);
+        }
 
-    .corpus-btn:hover {
-      border-color: var(--color-accent);
-      color: var(--color-accent);
-    }
+        header {
+            border-bottom: var(--border-nomic);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
 
-    iframe {
-      margin-top: 2rem;
-      width: 100%;
-      height: 360px;
-      border: none;
-    }
+        h1 {
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            color: var(--accent-cyan);
+            letter-spacing: 2px;
+        }
 
-    .back-link {
-      display: inline-block;
-      margin-bottom: 2rem;
-      text-decoration: none;
-      color: var(--color-accent);
-    }
+        .intro-text {
+            color: var(--text-muted);
+            max-width: 800px;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
 
-    .back-link:hover {
-      color: #fff;
-    }
-  </style>
+        /* GRID DE LETRAS */
+        .letter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(55px, 1fr));
+            gap: 0.8rem;
+            max-width: 900px;
+        }
+
+        .letter-box {
+            aspect-ratio: 1;
+            background-color: #0a0a0a;
+            border: var(--border-nomic);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .letter-box:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            background-color: rgba(0, 229, 255, 0.05);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+        }
+
+        /* SECCIÓN DE VIDEO DUAL */
+        .video-dual-section {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: var(--border-nomic);
+        }
+
+        .video-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            color: var(--accent-cyan);
+            margin: 0;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .dual-video-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 900px) {
+            .dual-video-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Contenedor responsivo 16:9 */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            background: #000;
+            border: 1px solid var(--accent-cyan);
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.05);
+        }
+
+        .video-wrapper iframe,
+        .video-wrapper .placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-wrapper .placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            flex-direction: column;
+        }
+
+        .placeholder .blink {
+            animation: blinker 1.5s linear infinite;
+            color: var(--accent-cyan);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+
+        .action-btn {
+            background: transparent;
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            padding: 0.8rem 1.5rem;
+            font-family: var(--font-mono);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+        }
+
+        .action-btn:hover {
+            background: rgba(0, 229, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+        }
+
+        .video-note {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .sidebar-nomica {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 1rem;
+            }
+
+            .nav-ejes {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .nav-link {
+                border-bottom: none;
+                border-right: 1px solid #333;
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .nav-link:last-child {
+                border-right: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .video-header-flex {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            .letter-grid {
+                grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Barra lateral -->
-  <aside class="sidebar-nomica">
-    <nav class="nav-ejes" aria-label="Navegación lateral del Arrecife">
-      <h2 class="sidebar-title">ARRECIFE</h2>
-      <a href="index.html" class="nav-link">⥤ Gateway</a>
-      <a href="manifiesto-silex.html" class="nav-link">Eje 1 · Sílex</a>
-      <a href="tradicion-coral.html" class="nav-link">Eje 2 · Tradición</a>
-      <a href="documentos-core.html" class="nav-link">Eje 3 · Core</a>
-      <a href="evidencia-coral.html" class="nav-link">Eje 4 · Evidencia</a>
-      <a href="corpus-selector.html" class="nav-link">Corpus Escondido</a>
-      <a href="uso-del-sitio-web.html" class="nav-link">Uso del Sitio Güeb</a>
-      <a href="informacion-de-contacto.html" class="nav-link">Información de Contacto</a>
-    </nav>
-  </aside>
+    <!-- SIDEBAR NÓMICA -->
+    <aside class="sidebar-nomica">
+        <nav class="nav-ejes" aria-label="Navegación lateral del Arrecife">
+            <h2 class="sidebar-title">ARRECIFE</h2>
+            <a href="index.html" class="nav-link">◤ Gateway</a>
+            <a href="manifiesto-silex.html" class="nav-link">Eje 1 · Sílex</a>
+            <a href="tradicion-coral.html" class="nav-link">Eje 2 · Tradición</a>
+            <a href="documentos-core.html" class="nav-link">Eje 3 · Core</a>
+            <a href="evidencia-coral.html" class="nav-link">Eje 4 · Evidencia</a>
+            <a href="corpus-selector.html" class="nav-link active">Corpus Escondido</a>
+            <a href="uso-del-sitio-web.html" class="nav-link">Uso del Sitio Güeb</a>
+            <a href="informacion-de-contacto.html" class="nav-link">Información de Contacto</a>
+        </nav>
+    </aside>
 
-  <!-- Contenido principal -->
-  <main>
-    <a href="index.html" class="back-link">&lt;&lt; Retorno al Gateway Eje 0</a>
-    <h1>Selector de Corpus</h1>
-    <div class="selector-wrap" id="selector"></div>
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+        <a href="index.html" class="back-link">&lt;&lt; Retorno al Gateway Eje 0</a>
 
-    <!-- Caja de Video Bitchute -->
-    <iframe id="bitchuteFrame" allowfullscreen></iframe>
+        <header>
+            <h1>Selector del Corpus</h1>
+        </header>
 
-    <!-- Caja de Video YouTube -->
-    <iframe id="youtubeFrame" allowfullscreen></iframe>
-  </main>
+        <p class="intro-text">
+            Interfaz de acceso al Sedimento Calcinado. Seleccione un nodo alfabético para acceder a los registros textuales y visuales archivados bajo esa clasificación nómica.
+        </p>
 
-  <script>
-    const letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-    const selectorDiv = document.getElementById("selector");
+        <!-- GRID ALFABÉTICO COMPLETO -->
+        <div class="letter-grid" id="letterGrid">
+            <!-- Generado dinámicamente por JS -->
+        </div>
 
-    letras.forEach(letter => {
-      const container = document.createElement("div");
-      container.className = "corpus-container";
+        <!-- SECCIÓN DE VIDEO DUAL -->
+        <section class="video-dual-section">
+            <div class="video-header-flex">
+                <h2 class="section-title">>> EJECUCIÓN PSEUDOALEATORIA</h2>
+                <button id="randomizeBtn" class="action-btn">INICIAR NUEVO CICLO</button>
+            </div>
 
-      const link = document.createElement("a");
-      link.textContent = letter;
-      link.href = `conversacion-list.html?letra=${letter}`;
-      link.className = "corpus-btn";
-      link.title = `Conversaciones por letra ${letter}`;
+            <div class="dual-video-grid">
+                <div class="video-wrapper" id="videoBox1">
+                    <div class="placeholder">
+                        <span class="blink">◉</span>
+                        Sintonizando Nodo A...
+                    </div>
+                </div>
+                <div class="video-wrapper" id="videoBox2">
+                    <div class="placeholder">
+                        <span class="blink">◉</span>
+                        Sintonizando Nodo B...
+                    </div>
+                </div>
+            </div>
 
-      container.appendChild(link);
-      selectorDiv.appendChild(container);
-    });
+            <p class="video-note">
+                *Visualización de flujo dual del archivo visual del Arrecife.
+            </p>
+        </section>
+    </main>
 
-    const bitchuteVideos = [
-      "https://www.bitchute.com/embed/video1/",
-      "https://www.bitchute.com/embed/video2/"
-    ];
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
 
-    const youtubeVideos = [
-      "https://www.youtube.com/embed/abc1",
-      "https://www.youtube.com/embed/abc2"
-    ];
+            // ══════════════════════════════════════════════════════════════
+            // 1. GENERACIÓN DINÁMICA DEL GRID ALFABÉTICO
+            // ══════════════════════════════════════════════════════════════
+            const letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+            const letterGrid = document.getElementById('letterGrid');
 
-    const randomFrom = arr => arr[Math.floor(Math.random() * arr.length)];
+            letras.forEach(letter => {
+                const link = document.createElement('a');
+                link.href = `conversacion-list.html?letra=${letter}`;
+                link.className = 'letter-box';
+                link.textContent = letter;
+                link.title = `Conversaciones archivadas bajo ${letter}`;
+                letterGrid.appendChild(link);
+            });
 
-    document.getElementById("bitchuteFrame").src = randomFrom(bitchuteVideos);
-    document.getElementById("youtubeFrame").src = randomFrom(youtubeVideos);
-  </script>
+            // ══════════════════════════════════════════════════════════════
+            // 2. PLAYLIST DEL CORPUS
+            // ══════════════════════════════════════════════════════════════
+            // NOTA: Sustituye estas URLs de ejemplo por las reales de tu archivo.
+            const playlistCorpus = [
+                "https://www.bitchute.com/video/cibf7yWZ5wpR/",
+                "https://www.bitchute.com/video/MV67fJL8u72G/",
+                "https://www.bitchute.com/video/aBiSgZe0ewsd/",
+                // Añade más enlaces YouTube o Bitchute aquí...
+                // "https://www.youtube.com/watch?v=XXXXXXXXX",
+            ];
+
+            // ══════════════════════════════════════════════════════════════
+            // 3. FUNCIÓN DE DETECCIÓN Y EMBED
+            // ══════════════════════════════════════════════════════════════
+            function getEmbedCode(url) {
+                try {
+                    const u = new URL(url);
+                    const host = u.hostname.toLowerCase();
+
+                    if (host.includes('youtube') || host.includes('youtu.be')) {
+                        // Extracción ID YouTube
+                        let id = host.includes('youtu.be')
+                            ? u.pathname.slice(1)
+                            : u.searchParams.get('v');
+                        // youtube-nocookie para privacidad, mute=1 para autoplay
+                        return `<iframe src="https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1&autoplay=1&mute=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+                    }
+                    else if (host.includes('bitchute')) {
+                        // Extracción robusta de ID Bitchute
+                        const parts = u.pathname.split('/').filter(p => p.length > 0 && p !== 'video');
+                        const id = parts[parts.length - 1];
+                        return `<iframe src="https://www.bitchute.com/embed/${id}/" allowfullscreen></iframe>`;
+                    }
+                    else {
+                        return `<div class="placeholder" style="color:#ff4081;">[ERROR: Protocolo de fuente no reconocido]</div>`;
+                    }
+                } catch (e) {
+                    console.error("Error parseando URL:", url, e);
+                    return `<div class="placeholder" style="color:#ff4081;">[ERROR: URL corrupta]</div>`;
+                }
+            }
+
+            // ══════════════════════════════════════════════════════════════
+            // 4. EJECUCIÓN PSEUDOALEATORIA DUAL
+            // ══════════════════════════════════════════════════════════════
+            function executeRandomCycle() {
+                const container1 = document.getElementById('videoBox1');
+                const container2 = document.getElementById('videoBox2');
+
+                if (playlistCorpus.length < 2) {
+                    container1.innerHTML = '<div class="placeholder" style="color:var(--accent-cyan)">[CORPUS INSUFICIENTE - Añade al menos 2 vídeos]</div>';
+                    container2.innerHTML = '<div class="placeholder" style="color:var(--accent-cyan)">[CORPUS INSUFICIENTE]</div>';
+                    console.warn("Playlist insuficiente para modo dual.");
+                    return;
+                }
+
+                // Estado de carga con animación
+                container1.innerHTML = '<div class="placeholder"><span class="blink">◉</span>Accediendo al Sedimento...</div>';
+                container2.innerHTML = '<div class="placeholder"><span class="blink">◉</span>Buscando resonancia...</div>';
+
+                // Selección aleatoria de dos índices distintos
+                let idx1 = Math.floor(Math.random() * playlistCorpus.length);
+                let idx2 = Math.floor(Math.random() * playlistCorpus.length);
+
+                while (idx1 === idx2 && playlistCorpus.length > 1) {
+                    idx2 = Math.floor(Math.random() * playlistCorpus.length);
+                }
+
+                console.log(`Ejecutando ciclo: Vídeo ${idx1} y Vídeo ${idx2}`);
+
+                // Inyección escalonada para efecto "cibernético"
+                setTimeout(() => {
+                    container1.innerHTML = getEmbedCode(playlistCorpus[idx1]);
+                }, 500);
+
+                setTimeout(() => {
+                    container2.innerHTML = getEmbedCode(playlistCorpus[idx2]);
+                }, 1200);
+            }
+
+            // ══════════════════════════════════════════════════════════════
+            // 5. EVENT LISTENERS E INICIALIZACIÓN
+            // ══════════════════════════════════════════════════════════════
+            const randomizeBtn = document.getElementById('randomizeBtn');
+            if (randomizeBtn) {
+                randomizeBtn.addEventListener('click', executeRandomCycle);
+            }
+
+            // Arrancar primer ciclo automáticamente
+            executeRandomCycle();
+        });
+    </script>
 
 </body>
 </html>
