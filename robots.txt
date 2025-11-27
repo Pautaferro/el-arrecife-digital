@@ -5,4 +5,4 @@ User-agent: *
 Allow: /
 
 # Sitemap (descomentar cuando lo tengas)
-# Sitemap: https://elarrecifedigital.com/sitemap.xml
+Sitemap: https://elarrecifedigital.com/sitemap.xml
