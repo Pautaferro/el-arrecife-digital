@@ -1,0 +1,8 @@
+# robots.txt para El Arrecife Digital
+# Permite indexación completa por todos los buscadores
+
+User-agent: *
+Allow: /
+
+# Sitemap (descomentar cuando lo tengas)
+# Sitemap: https://elarrecifedigital.com/sitemap.xml
