@@ -103,6 +103,80 @@
     .back-link:hover {
       color: #fff;
     }
+
+    /* PLATFORM SELECTOR */
+    .platform-selector {
+      margin: 1.5rem 0;
+    }
+
+    .platform-label {
+      display: block;
+      margin-bottom: 0.8rem;
+      color: var(--color-muted);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+
+    .platform-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .platform-btn {
+      background: transparent;
+      border: 1px solid var(--color-muted);
+      color: var(--color-primary);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      padding: 0.6rem 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      letter-spacing: 1px;
+    }
+
+    .platform-btn:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
+
+    .platform-btn.active {
+      background: var(--color-accent);
+      color: var(--color-bg);
+      border-color: var(--color-accent);
+    }
+
+    .platform-btn.bitchute:hover,
+    .platform-btn.bitchute.active {
+      border-color: #ef4136;
+      background: #ef4136;
+      color: #fff;
+    }
+
+    .platform-btn.youtube:hover,
+    .platform-btn.youtube.active {
+      border-color: #ff0000;
+      background: #ff0000;
+      color: #fff;
+    }
+
+    .video-container {
+      margin-top: 1rem;
+      max-width: 640px;
+    }
+
+    .video-container iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: 1px solid #333;
+    }
+
+    .video-notice {
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
@@ -111,7 +185,7 @@
   <aside class="sidebar-nomica">
     <nav class="nav-ejes" aria-label="Navegación lateral del Arrecife">
       <h2 class="sidebar-title">ARRECIFE</h2>
-     <a href="index.html" class="nav-link">⥤ Gateway</a>
+      <a href="portal.html" class="nav-link">⥤ Gateway</a>
       <a href="manifiesto-silex.html" class="nav-link">Eje 1 · Sílex</a>
       <a href="tradicion-coral.html" class="nav-link">Eje 2 · Tradición</a>
       <a href="documentos-core.html" class="nav-link">Eje 3 · Core</a>
@@ -154,9 +228,29 @@
 
         <section id="declaracion-guerra">
             <h2>II. La Guerra Estratégica</h2>
+            
+            <div class="platform-selector">
+              <span class="platform-label">SELECCIONA PLATAFORMA DE VISIONADO:</span>
+              <div class="platform-buttons">
+                <button class="platform-btn bitchute active" data-platform="bitchute" onclick="selectPlatform('bitchute')">
+                  ▶ BITCHUTE
+                </button>
+                <button class="platform-btn youtube" data-platform="youtube" onclick="selectPlatform('youtube')">
+                  ▶ YOUTUBE
+                </button>
+              </div>
+            </div>
+
+            <div class="video-container">
+              <iframe 
+                id="guerra-video" 
+                src="https://www.bitchute.com/embed/MSxt4WxWpzUz/" 
+                allowfullscreen>
+              </iframe>
+              <p class="video-notice" id="video-notice">Reproduciendo desde Bitchute — plataforma sin censura corporativa</p>
+            </div>
+
             <p>
-                [ESPACIO RESERVADO PARA LA INSCRIPCIÓN DEL PÓLIPO ACTIVO]
-                <br><br>
                 Aquí se definirá la naturaleza del conflicto: la batalla entre la Osificación Nómica (la muerte por rigidez o silencio) y la Progresión Coral.
             </p>
         </section>
@@ -176,6 +270,37 @@
 
         <footer>
             <span class="status-indicator"></span>
-            SISTEMA ACTIVO | NODO KRIYA | COMMIT: MANIFESTO_VIDEO_V1
+            SISTEMA ACTIVO | NODO KRIYA | COMMIT: MANIFESTO_VIDEO_V2
         </footer>
-    </main></body></html>
+    </main>
+
+  <script>
+    // URLs de los videos - EDITAR AQUÍ
+    const videoURLs = {
+      bitchute: 'https://www.bitchute.com/embed/MSxt4WxWpzUz/',
+      youtube: 'https://www.youtube-nocookie.com/embed/MSxt4WxWpzUz'  // Cambiar por el ID real de YouTube
+    };
+
+    const notices = {
+      bitchute: 'Reproduciendo desde Bitchute — plataforma sin censura corporativa',
+      youtube: 'Reproduciendo desde YouTube — disponibilidad global'
+    };
+
+    function selectPlatform(platform) {
+      // Actualizar botones
+      document.querySelectorAll('.platform-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.querySelector(`.platform-btn.${platform}`).classList.add('active');
+
+      // Actualizar video
+      const iframe = document.getElementById('guerra-video');
+      iframe.src = videoURLs[platform];
+
+      // Actualizar aviso
+      document.getElementById('video-notice').textContent = notices[platform];
+    }
+  </script>
+
+</body>
+</html>

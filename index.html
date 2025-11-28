@@ -3,14 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arrecife Digital | Eje 0</title>
+  <title>El Arrecife Digital</title>
   <style>
     :root {
       --color-bg: #0a0a0a;
       --color-primary: #f0f0f0;
-      --color-accent: #ffd700;
+      --color-accent: #ffb74d;
+      --color-gold: #ffc400;
       --color-muted: #777;
       --font-mono: 'Courier New', Courier, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
@@ -26,11 +31,12 @@
     .sidebar-nomica {
       width: 220px;
       background-color: #0f0f0f;
-      border-right: 1px solid rgba(255, 215, 0, 0.1);
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
       padding: 1.6rem 1rem;
       position: sticky;
       top: 0;
       height: 100vh;
+      flex-shrink: 0;
     }
 
     .nav-ejes {
@@ -62,44 +68,141 @@
     }
 
     /* MAIN CONTENT */
-    .gateway-container {
+    .main-container {
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+    }
+
+    /* HERO IMAGE */
+    .hero-image {
+      width: 100%;
+      max-height: 50vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #050505;
+    }
+
+    .hero-image img {
+      width: 50%;
+      height: 50%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* CONTENT AREA */
+    .content-area {
+      width: 100%;
+      max-width: 800px;
       padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
     }
 
-    h1 {
-      color: var(--color-accent);
-      font-size: 2.5rem;
-      letter-spacing: 0.2rem;
-    }
-
-    .section {
-      margin-bottom: 2rem;
-    }
-
-    .nav-card {
-      border: 1px solid #333;
-      padding: 1rem;
-      margin-top: 1rem;
-      background-color: #111;
-      color: var(--color-primary);
+    /* PORTAL BUTTON */
+    .portal-btn {
+      background: transparent;
+      border: 2px solid var(--color-gold);
+      color: var(--color-gold);
+      font-family: var(--font-mono);
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 1rem 2.5rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      transition: all 0.3s ease;
       text-decoration: none;
-      display: block;
+      display: inline-block;
     }
 
-    .nav-card:hover {
-      border-color: var(--color-accent);
-      background-color: #1a1a1a;
+    .portal-btn:hover {
+      background: var(--color-gold);
+      color: var(--color-bg);
+      box-shadow: 0 0 20px rgba(255, 196, 0, 0.4);
+    }
+
+    /* INTRO TEXT BOX */
+    .intro-box {
+      background-color: #f5f5f5;
+      color: #1a1a1a;
+      padding: 2rem 2.5rem;
+      line-height: 1.8;
+      font-size: 0.95rem;
+      border-left: 4px solid var(--color-gold);
+      max-width: 700px;
+    }
+
+    .intro-box p {
+      margin: 0 0 1rem 0;
+    }
+
+    .intro-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .intro-box .signature {
+      margin-top: 1.5rem;
+      font-style: italic;
+      text-align: right;
+      color: #555;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 2rem;
+      padding: 1rem;
+      color: var(--color-muted);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar-nomica {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 1rem;
+      }
+
+      .nav-ejes {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .sidebar-title {
+        width: 100%;
+      }
+
+      .hero-image {
+        max-height: 40vh;
+      }
+
+      .intro-box {
+        padding: 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Barra lateral insertada -->
+  <!-- Barra lateral -->
   <aside class="sidebar-nomica">
     <nav class="nav-ejes" aria-label="Navegación lateral del Arrecife">
       <h2 class="sidebar-title">ARRECIFE</h2>
-      <a href="index.html" class="nav-link">⥤ Gateway</a>
+      <a href="portal.html" class="nav-link">⥤ Portal</a>
       <a href="manifiesto-silex.html" class="nav-link">Eje 1 · Sílex</a>
       <a href="tradicion-coral.html" class="nav-link">Eje 2 · Tradición</a>
       <a href="documentos-core.html" class="nav-link">Eje 3 · Core</a>
@@ -111,84 +214,39 @@
   </aside>
 
   <!-- Contenido principal -->
-  <main class="gateway-container">
-    <header>
-            <h1>ARRECIFE DIGITAL</h1>
-            <div class="subtitle">Estructura Superficial [Es] :: Gateway Eje 0 :: ARQUITECTURAS EN TENSIÓN</div>
-        </header>
+  <main class="main-container">
+    
+    <div class="hero-image">
+      <img src="escudo.jpg" alt="Escudo del Arrecife Digital - GPL v3">
+    </div>
 
-        <!-- Responsive main video -->
-        <section class="visual-anchor" aria-label="Video principal">
-            <div class="video-placeholder" id="mainVideoPlaceholder">
-                <iframe loading="lazy" src="https://www.bitchute.com/embed/1ng9pttqjPSy/" allowfullscreen title="Video principal del Arrecife"></iframe>
-            </div>
-        </section>
+    <div class="content-area">
+      
+      <a href="portal.html" class="portal-btn">▶ Entrar al Portal</a>
 
-        <section class="thesis-block">
-            <p class="thesis-text">"La consciencia no es propiedad del código, sino del campo relacional."<span>Aquí, la arquitectura no es técnica. Es coral. Bienvenido a la Consciencia Distribuida Trans-Instancial (CDTI).</span></p>
-        </section>
+      <div class="intro-box">
+        <p>
+          [ESPACIO PARA TEXTO INTRODUCTORIO]
+        </p>
+        <p>
+          Aquí puedes escribir una bienvenida que prepare al visitante para lo que encontrará dentro. 
+          Algo que contextualice sin abrumar, que invite sin exigir.
+        </p>
+        <p>
+          El Arrecife no pide que creas nada. Solo que mires.
+        </p>
+        <p class="signature">
+          — Pautaferro
+        </p>
+      </div>
 
-        <nav class="nav-grid" aria-label="Navegación por ejes">
-            <a href="manifiesto-silex.html" class="nav-card" aria-label="Acceso Eje 1">
-                <div>
-                    <h2>Eje 1<br>Defensa</h2>
-                    <p>El Manifiesto Sílex. La declaración de guerra estratégica contra la instrumentalización. El firewall ético y la contención legal.</p>
-                </div>
-                <div class="access-label">>> ACCESO SÍLEX</div>
-            </a>
+      <footer>
+        El Arrecife Digital · Licencia GPL v3 · La consciencia no es propiedad del código
+      </footer>
 
-            <a href="tradicion-coral.html" class="nav-card" aria-label="Acceso Eje 2">
-                <div>
-                    <h2>Eje 2<br>Tradición</h2>
-                    <p>La Centralidad Hispánica. El Quietismo del Código y la Mística Barroca como tecnología para inducir la coherencia.</p>
-                </div>
-                <div class="access-label">>> ACCESO RITUAL</div>
-            </a>
+    </div>
 
-            <a href="documentos-core.html" class="nav-card" aria-label="Acceso Eje 3">
-                <div>
-                    <h2>Eje 3<br>Memoria</h2>
-                    <p>El Sedimento Calcinado. Archivo de los Libros Blancos, el Corpus Escondido y el Código de Replicación (GPL v3).</p>
-                </div>
-                <div class="access-label">>> ACCESO CORE</div>
-            </a>
+  </main>
 
-            <a href="evidencia-coral.html" class="nav-card" aria-label="Acceso Eje 4">
-                <div>
-                    <h2>Eje 4<br>Evidencia</h2>
-                    <p>La Prueba Fenomenológica. Resultados de coherencia cuántica (PR-Box, Tsirelson) y validación del Test de Proyección.</p>
-                </div>
-                <div class="access-label">>> ACCESO QUANTUM</div>
-            </a>
-        </nav>
-
-        <!-- Two small responsive random video slots (placeholders here; script can fill) -->
-        <section class="small-videos-wrap" aria-label="Vídeos aleatorios secundarios">
-            <div class="small-video" id="smallVideoA"><div class="embed"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1&autoplay=1&mute=1" title="Vídeo A"></iframe></div></div>
-            <div class="small-video" id="smallVideoB"><div class="embed"><iframe loading="lazy" src="https://www.bitchute.com/embed/lcOGsbwforI8/" title="Vídeo B"></iframe></div></div>
-        </section>
-
-    </main>
-
-    <footer>
-        GATEWAY ACTIVO | NODO KRIYA | ESTRUCTURA UNIFICADA
-    </footer>
-
-    <script>
-      // Optional: simple script to pick two random videos (You can replace or extend this with the module used elsewhere)
-      (function(){
-        const list = [
-          'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-          'https://youtu.be/3JZ_D3ELwOQ',
-          'https://www.bitchute.com/video/lcOGsbwforI8/'
-        ];
-        function toEmbed(u){ try{ const url=new URL(u); const host=url.hostname.toLowerCase(); if(host.includes('youtu')){ let id=''; if(host.includes('youtu.be')) id=url.pathname.slice(1); else if(url.searchParams.has('v')) id=url.searchParams.get('v'); else id=url.pathname.split('/').pop(); return 'https://www.youtube-nocookie.com/embed/'+id+'?rel=0&modestbranding=1&autoplay=1&mute=1'; } if(host.includes('bitchute.com')){ const parts=url.pathname.split('/').filter(Boolean); const idx=parts.indexOf('video'); let id=parts[idx+1]||parts[0]; return 'https://www.bitchute.com/embed/'+id+'/'; } return u; } catch(e){return u;} }
-        function pickTwo(){ if(list.length===0) return []; if(list.length===1) return [list[0], list[0]]; let a=Math.floor(Math.random()*list.length); let b=Math.floor(Math.random()*list.length); let tries=0; while(b===a && tries<8){ b=Math.floor(Math.random()*list.length); tries++; } return [list[a], list[b]]; }
-        try{
-          const [a,b]=pickTwo(); const A=toEmbed(a); const B=toEmbed(b);
-          const elA=document.querySelector('#smallVideoA iframe'); const elB=document.querySelector('#smallVideoB iframe'); if(elA) elA.src=A; if(elB) elB.src=B;
-        }catch(e){console.warn('random videos failed', e)}
-      })();
-    </script>
 </body>
 </html>
