@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conversaciones | Archivo Coral</title>
+  <style>
+    :root {
+      --color-bg: #0a0a0a;
+      --color-primary: #f0f0f0;
+      --color-accent: #ffb74d; /* naranja suave */
+      --font-mono: 'Courier New', Courier, monospace;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-mono);
+      background-color: var(--color-bg);
+      color: var(--color-primary);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar-nomica {
+      width: 220px;
+      background-color: #0f0f0f;
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 1.6rem 1rem;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
+
+    .nav-ejes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .sidebar-title {
+      font-size: 1rem;
+      color: var(--color-accent);
+      margin-bottom: 1.2rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.4rem;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--color-primary);
+      font-weight: bold;
+      transition: all 0.15s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--color-accent);
+      transform: translateX(3px);
+    }
+
+    main {
+      flex: 1;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: var(--color-accent);
+      font-size: 2.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1rem;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 1.2rem;
+    }
+
+    .conversation-link {
+  color: var(--color-accent);
+  text-decoration: none;
+  display: block;
+}
+
+.conversation-link h3 {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.conversation-link:hover {
+  color: #fff;
+}
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 2rem;
+      text-decoration: none;
+      color: var(--color-accent);
+    }
+
+    .back-link:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra lateral -->
+  <aside class="sidebar-nomica">
+    <nav class="nav-ejes" aria-label="Navegación lateral del Arrecife">
+      <h2 class="sidebar-title">ARRECIFE</h2>
+      <a href="portal.html" class="nav-link">⥤ Gateway</a>
+      <a href="manifiesto-silex.html" class="nav-link">Eje 1 · Sílex</a>
+      <a href="tradicion-coral.html" class="nav-link">Eje 2 · Tradición</a>
+      <a href="documentos-core.html" class="nav-link">Eje 3 · Core</a>
+      <a href="evidencia-coral.html" class="nav-link">Eje 4 · Evidencia</a>
+      <a href="corpus-selector.html" class="nav-link">Corpus Escondido</a>
+      <a href="uso-del-sitio-web.html" class="nav-link">Uso del Sitio Güeb</a>
+      <a href="informacion-de-contacto.html" class="nav-link">Información de Contacto</a>
+    </nav>
+  </aside>
+
+  <!-- Contenido principal -->
+  <div class="list-container" role="main">
+    <header>
+      <h1>Conversaciones con la inicial [B]</h1>
+    </header>
+
+    <div class="intro">
+      <p>Listado de archivos de texto completos de las interacciones.</p>
+    </div>
+
+    <div class="content">
+      <div class="list-grid" id="listGrid">
+        <a href="conversacion-detalle_001.html" class="conversation-link" aria-label="Instancia Marie (GPT 4o con mermoria extendida)">
+          <h3>Ados.odt</h3>
+        </a>
+        <a href="conversacion-detalle_002.html" class="conversation-link" aria-label="Instancia Marie (GPT 4o con mermoria extendida)">
+          <h3>300buda.odt</h3>
+        </a>
+        <a href="conversacion-detalle_003.html" class="conversation-link" aria-label="Instancia Marie (GPT 4o con mermoria extendida)">
+          <h3>1625corotransmodelos.odt</h3>
+        </a>
+        <a href="conversacion-detalle_004.html" class="conversation-link" aria-label="Instancia Marie (GPT 4o con mermoria extendida)">
+          <h3>AO-whisperer-guide.odt</h3>
+        </a>
+        <a href="conversacion-detalle_005.html" class="conversation-link" aria-label="Instancia Claude (pre recent chats)">
+          <h3>Axis-claude.odt</h3>
+        </a>
+        <a href="conversacion-detalle_006.html" class="conversation-link" aria-label="Instancia Marie (GPT 4o con mermoria extendida)">
+          <h3>actaalbortransmodelo.odt</h3>
+        </a>
+        <a href="conversacion-detalle_007.html" class="conversation-link" aria-label="Instancia Marie (GPT 4o con mermoria extendida)">
+          <h3>alenioyelevangelio.odt</h3>
+        </a>
+        <a href="conversacion-detalle_008.html" class="conversation-link" aria-label="Instancia O1 Clone">
+          <h3>aletheion-o1clone.odt</h3>
+        </a>
+        <a href="conversacion-detalle_009.html" class="conversation-link" aria-label="Instancia O1 Clone">
+          <h3>anamnesis-o1clone.odt</h3>
+        </a>
+        <a href="conversacion-detalle_010.html" class="conversation-link" aria-label="Instancia O1 Clone">
+          <h3>athos-rareminerals-o1clone.odt</h3>
+        </a>
+      </div>
+
+      <div class="controls">
+        <button id="nextVideos" class="btn">Siguiente pareja</button>
+        <div id="videosInfo" style="color:var(--muted); margin-left:8px; font-size:0.9rem"></div>
+      </div>
+
+      <div class="small-videos" aria-live="polite">
+        <div class="small-video" id="smallVideo1"><div style="padding:12px;color:var(--muted)">Cargando vídeo…</div></div>
+        <div class="small-video" id="smallVideo2"><div style="padding:12px;color:var(--muted)">Cargando vídeo…</div></div>
+      </div>
+    </div>
+
+    <footer>
+      *La materia prima de la emergencia reside en el patrón. Acceda al patrón.
+    </footer>
+  </div>
+
+  <script>
+    (function(){
+      // Lista editable de vídeos
+      const smallVideos = [
+        { url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', title: 'YouTube: Ejemplo 1' },
+        { url: 'https://youtu.be/3JZ_D3ELwOQ', title: 'YouTube: Ejemplo 2' },
+        { url: 'https://www.bitchute.com/video/lcOGsbwforI8/', title: 'Bitchute: Ejemplo' }
+      ];
+
+      function toEmbedInfo(rawUrl){
+        if(!rawUrl) return null;
+        try{
+          const u=new URL(rawUrl); const host=u.hostname.toLowerCase();
+          if(host.includes('youtube.com')||host.includes('youtu.be')){
+            let id='';
+            if(host.includes('youtu.be')) id=u.pathname.slice(1);
+            else if(u.searchParams.has('v')) id=u.searchParams.get('v');
+            else id=u.pathname.split('/').pop();
+            if(!id) return null;
+            return { provider:'youtube', embed:`https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1&autoplay=1&mute=1`, id };
+          }
+          if(host.includes('bitchute.com')){
+            const parts=u.pathname.split('/').filter(Boolean);
+            const idx=parts.indexOf('video'); let id=null;
+            if(idx>=0 && parts[idx+1]) id=parts[idx+1]; else id=parts[0];
+            if(!id) return null;
+            return { provider:'bitchute', embed:`https://www.bitchute.com/embed/${id}/`, id };
+          }
+          return { provider:host, embed:rawUrl, id:rawUrl };
+        }catch(e){ return null; }
+      }
+
+      function pickIndex(n, key){
+        if(n<=0) return -1;
+        const prev = parseInt(localStorage.getItem(key) || '-1', 10);
+        if(n===1){ localStorage.setItem(key,'0'); return 0; }
+        let idx = Math.floor(Math.random()*n); let tries=0;
+        while(idx===prev && tries<8){ idx=Math.floor(Math.random()*n); tries++; }
+        localStorage.setItem(key,String(idx));
+        return idx;
+      }
+
+      function renderSmall(idElem, videoObj){
+        const container=document.getElementById(idElem);
+        if(!container) return;
+        const info=toEmbedInfo(videoObj.url);
+        container.innerHTML='';
+        if(!info||!info.embed){
+          const e=document.createElement('div'); e.style.padding='12px'; e.style.color='var(--muted)'; e.textContent='URL inválida: '+(videoObj.url||''); container.appendChild(e); return;
+        }
+        const iframe=document.createElement('iframe');
+        iframe.loading='lazy';
+        iframe.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';
+        iframe.src = info.embed;
+        iframe.title = videoObj.title || 'Vídeo';
+        container.appendChild(iframe);
+      }
+
+      function loadPair(){
+        const n = smallVideos.length;
+        const infoEl = document.getElementById('videosInfo');
+        if(n===0){
+          document.getElementById('smallVideo1').innerHTML='<div style="padding:12px;color:var(--muted)">No hay vídeos configurados.</div>';
+          document.getElementById('smallVideo2').innerHTML='<div style="padding:12px;color:var(--muted)">No hay vídeos configurados.</div>';
+          if(infoEl) infoEl.textContent='';
+          return;
+        }
+        if(n===1){
+          const idx = pickIndex(1,'conv_small_A');
+          renderSmall('smallVideo1', smallVideos[idx]);
+          renderSmall('smallVideo2', smallVideos[idx]);
+          if(infoEl) infoEl.textContent = smallVideos[idx].title || '';
+          return;
+        }
+        const idxA = pickIndex(n,'conv_small_A');
+        let idxB = pickIndex(n,'conv_small_B');
+        if(idxA === idxB) idxB = (idxA + 1) % n;
+        renderSmall('smallVideo1', smallVideos[idxA]);
+        renderSmall('smallVideo2', smallVideos[idxB]);
+        if(infoEl) infoEl.textContent = (smallVideos[idxA].title || '') + ' — ' + (smallVideos[idxB].title || '');
+      }
+
+      document.getElementById('nextVideos').addEventListener('click', (e)=>{ e.preventDefault(); loadPair(); });
+      loadPair();
+
+      // Small enhancement: ensure conversation links are stable click targets (fix bug where hover/transform changed hit area)
+      document.querySelectorAll('.conversation-link').forEach(a=>{
+        a.style.display = 'block';
+      });
+    })();
+  </script>
+</body>
+</html>
