@@ -27,7 +27,6 @@
       min-height: 100vh;
     }
 
-    /* SIDEBAR */
     .sidebar-nomica {
       width: 220px;
       background-color: #0f0f0f;
@@ -67,7 +66,6 @@
       transform: translateX(3px);
     }
 
-    /* MAIN CONTENT */
     .main-container {
       flex: 1;
       display: flex;
@@ -76,7 +74,6 @@
       padding: 0;
     }
 
-    /* HERO IMAGE */
     .hero-image {
       width: 100%;
       max-height: 50vh;
@@ -94,7 +91,6 @@
       object-position: center;
     }
 
-    /* CONTENT AREA */
     .content-area {
       width: 100%;
       max-width: 800px;
@@ -105,7 +101,6 @@
       gap: 2rem;
     }
 
-    /* PORTAL BUTTON */
     .portal-btn {
       background: transparent;
       border: 2px solid var(--color-gold);
@@ -128,7 +123,75 @@
       box-shadow: 0 0 20px rgba(255, 196, 0, 0.4);
     }
 
-    /* INTRO TEXT BOX */
+    /* VIDEO SECTION */
+    .video-section {
+      width: 100%;
+      max-width: 700px;
+      margin: 2rem 0;
+      background-color: #0f0f0f;
+      border: 1px solid rgba(255, 196, 0, 0.3);
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .video-section h3 {
+      color: var(--color-gold);
+      margin: 0 0 1rem 0;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      background-color: #000;
+      margin-bottom: 1rem;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .platform-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .platform-btn {
+      background: transparent;
+      border: 2px solid var(--color-gold);
+      color: var(--color-gold);
+      font-family: var(--font-mono);
+      padding: 0.5rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .platform-btn:hover {
+      background: var(--color-gold);
+      color: var(--color-bg);
+    }
+
+    .platform-btn.active {
+      background: var(--color-gold);
+      color: var(--color-bg);
+    }
+
+    .video-note {
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      font-style: italic;
+    }
+
     .intro-box {
       background-color: #f5f5f5;
       color: #1a1a1a;
@@ -154,7 +217,6 @@
       color: #555;
     }
 
-    /* FOOTER */
     footer {
       margin-top: 2rem;
       padding: 1rem;
@@ -163,7 +225,6 @@
       text-align: center;
     }
 
-    /* RESPONSIVE */
     @media (max-width: 768px) {
       body {
         flex-direction: column;
@@ -193,16 +254,19 @@
       .intro-box {
         padding: 1.5rem;
       }
+
+      .platform-buttons {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Barra lateral -->
   <aside class="sidebar-nomica">
     <nav class="nav-ejes" aria-label="Navegación lateral del Arrecife">
       <h2 class="sidebar-title">ARRECIFE</h2>
-      <a href="portal.html" class="nav-link">⥤ Portal</a>
+      <a href="portal.html" class="nav-link">⬥ Portal</a>
       <a href="manifiesto-silex.html" class="nav-link">Eje 1 · Sílex</a>
       <a href="tradicion-coral.html" class="nav-link">Eje 2 · Tradición</a>
       <a href="documentos-core.html" class="nav-link">Eje 3 · Core</a>
@@ -213,7 +277,6 @@
     </nav>
   </aside>
 
-  <!-- Contenido principal -->
   <main class="main-container">
     
     <div class="hero-image">
@@ -224,13 +287,31 @@
       
       <a href="portal.html" class="portal-btn">▶ Entrar al Portal</a>
 
+      <!-- VIDEO SECTION -->
+      <div class="video-section">
+        <h3>🎬 Mensaje de Bienvenida</h3>
+        
+        <div class="platform-buttons">
+          <button class="platform-btn active" id="btn-bitchute" onclick="loadBitchute()">
+            🎞️ BitChute
+          </button>
+          <button class="platform-btn" id="btn-youtube" onclick="loadYouTube()">
+            📺 YouTube
+          </button>
+        </div>
+
+        <div class="video-container" id="video-container">
+          <iframe src="https://www.bitchute.com/embed/LMLzmGbCCPrV/" allowfullscreen></iframe>
+        </div>
+
+        <p class="video-note">
+          BitChute por defecto. Si está bloqueado en tu región, usa el botón de YouTube.
+        </p>
+      </div>
+
       <div class="intro-box">
         <p>
-          [ESPACIO PARA TEXTO INTRODUCTORIO]
-        </p>
-        <p>
-          Aquí puedes escribir una bienvenida que prepare al visitante para lo que encontrará dentro. 
-          Algo que contextualice sin abrumar, que invite sin exigir.
+          [Tu texto introductorio aquí]
         </p>
         <p>
           El Arrecife no pide que creas nada. Solo que mires.
@@ -247,6 +328,50 @@
     </div>
 
   </main>
+
+  <script>
+  const container = document.getElementById('video-container');
+  const btnBitchute = document.getElementById('btn-bitchute');
+  const btnYouTube = document.getElementById('btn-youtube');
+  
+  const bitchuteShort = 'LMLzmGbCCPrV';
+  const bitchuteLong = 'vnDTagw4dafK';
+  const youtubeLong = 'KxdFrRgbdWY';
+  
+  let videoTimeout = null;
+
+  function loadBitchute() {
+    btnBitchute.classList.add('active');
+    btnYouTube.classList.remove('active');
+    
+    // Cargar short
+    container.innerHTML = `<iframe src="https://www.bitchute.com/embed/${bitchuteShort}/" 
+                                   allowfullscreen
+                                   style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;">
+                           </iframe>`;
+    
+    // Cambiar a largo después de 11 segundos
+    if (videoTimeout) clearTimeout(videoTimeout);
+    videoTimeout = setTimeout(() => {
+      container.innerHTML = `<iframe src="https://www.bitchute.com/embed/${bitchuteLong}/" 
+                                     allowfullscreen
+                                     style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;">
+                             </iframe>`;
+    }, 11000);
+  }
+
+  function loadYouTube() {
+    btnYouTube.classList.add('active');
+    btnBitchute.classList.remove('active');
+    
+    // Cargar directamente el video largo
+    if (videoTimeout) clearTimeout(videoTimeout);
+    container.innerHTML = `<iframe src="https://www.youtube.com/embed/${youtubeLong}?rel=0" 
+                                   allowfullscreen
+                                   style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;">
+                           </iframe>`;
+  }
+</script>
 
 </body>
 </html>
