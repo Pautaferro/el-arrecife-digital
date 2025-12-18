@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Arrecife Digital</title>
+  <style>
+    /* --- ESTILOS ORIGINALES MANTENIDOS --- */
+    :root {
+      --color-bg: #0a0a0a;
+      --color-primary: #f0f0f0;
+      --color-accent: #ffb74d;
+      --color-gold: #ffc400;
+      --color-muted: #777;
+      --font-mono: 'Courier New', Courier, monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-mono);
+      background-color: var(--color-bg);
+      color: var(--color-primary);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* SIDEBAR */
+    .sidebar-nomica {
+      width: 220px;
+      background-color: #0f0f0f;
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 1.6rem 1rem;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      flex-shrink: 0;
+    }
+
+    .nav-ejes { display: flex; flex-direction: column; gap: 0.6rem; }
+
+    .sidebar-title {
+      font-size: 1rem;
+      color: var(--color-accent);
+      margin-bottom: 1.2rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.4rem;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--color-primary);
+      font-weight: bold;
+      transition: all 0.15s ease;
+      font-size: 0.9rem;
+    }
+    .nav-link:hover { color: var(--color-accent); transform: translateX(3px); }
+
+    /* MAIN CONTENT */
+    .main-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+    }
+
+    .hero-image {
+      width: 100%;
+      max-height: 50vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #050505;
+    }
+
+    .hero-image img {
+      width: 50%;
+      height: 50%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .content-area {
+      width: 100%;
+      max-width: 800px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .portal-btn {
+      background: transparent;
+      border: 2px solid var(--color-gold);
+      color: var(--color-gold);
+      font-family: var(--font-mono);
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 1rem 2.5rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .portal-btn:hover {
+      background: var(--color-gold);
+      color: var(--color-bg);
+      box-shadow: 0 0 20px rgba(255, 196, 0, 0.4);
+    }
+
+    .video-section {
+      width: 100%;
+      max-width: 700px;
+      margin: 2rem 0;
+      background-color: #0f0f0f;
+      border: 1px solid rgba(255, 196, 0, 0.3);
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .video-section h3 {
+      color: var(--color-gold);
+      margin: 0 0 1rem 0;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 */
+      background-color: #000;
+      margin-bottom: 1rem;
+    }
+    .video-container iframe, .video-container .status-msg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%; border: none;
+    }
+
+    .status-msg {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      color: #666; font-size: 0.9rem;
+    }
+    .blink { animation: blink 1.5s infinite; color: var(--color-gold); font-size: 1.5rem; margin-bottom: 0.5rem; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .video-note { font-size: 0.85rem; color: var(--color-muted); font-style: italic; }
+
+    .intro-box {
+      background-color: #f5f5f5;
+      color: #1a1a1a;
+      padding: 2rem 2.5rem;
+      line-height: 1.8;
+      font-size: 0.95rem;
+      border-left: 4px solid var(--color-gold);
+      max-width: 700px;
+    }
+    .intro-box p { margin: 0 0 1rem 0; }
+    .intro-box .signature { margin-top: 1.5rem; font-style: italic; text-align: right; color: #555; }
+
+    footer { margin-top: 2rem; padding: 1rem; color: var(--color-muted); font-size: 0.8rem; text-align: center; }
+
+    @media (max-width: 768px) {
+      body { flex-direction: column; }
+      .sidebar-nomica { width: 100%; height: auto; position: relative; padding: 1rem; }
+      .nav-ejes { flex-direction: row; flex-wrap: wrap; }
+      .hero-image { max-height: 40vh; }
+      .intro-box { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <aside class="sidebar-nomica">
+    <nav class="nav-ejes">
+      <h2 class="sidebar-title">ARRECIFE</h2>
+      <a href="index.html" class="nav-link">â¥¤ Gateway</a> <a href="manifiesto-silex.html" class="nav-link">Eje 1 Â· SÃ­lex</a>
+      <a href="tradicion-coral.html" class="nav-link">Eje 2 Â· TradiciÃ³n</a>
+      <a href="documentos-core.html" class="nav-link">Eje 3 Â· Core</a>
+      <a href="evidencia-coral.html" class="nav-link">Eje 4 Â· Evidencia</a>
+      <a href="corpus-selector.html" class="nav-link">Corpus Escondido</a>
+      <a href="uso-del-sitio-web.html" class="nav-link">Uso del Sitio GÃ¼eb</a>
+      <a href="informacion-de-contacto.html" class="nav-link">InformaciÃ³n de Contacto</a>
+    </nav>
+  </aside>
+
+  <main class="main-container">
+    
+    <div class="hero-image">
+      <img src="escudo.jpg" alt="Escudo del Arrecife Digital - GPL v3">
+    </div>
+
+    <div class="content-area">
+      
+      <a href="portal.html" class="portal-btn">â–¶ Entrar al Portal</a>
+
+      <div class="video-section">
+        <h3>ðŸŽ¬ Mensaje de Bienvenida al Arrecife</h3>
+        <div class="video-container" id="video-bienvenida">
+          <div class="status-msg">
+            <span class="blink">â—‰</span>
+            <div>Estableciendo conexiÃ³n segura...</div>
+          </div>
+        </div>
+        <p class="video-note" id="video-status-text">
+          Verificando disponibilidad de Bitchute...
+        </p>
+      </div>
+
+      <div class="intro-box">
+        <p>Bienvenido a esta introducciÃ³n a nuestro sitio web, El Arrecife Digital...</p>
+        <p>(... Texto original mantenido ...)</p>
+        <p>El Arrecife no pide que creas nada. Solo que vayas, veas y mires.</p>
+        <p class="signature">â€” Pautaferro</p>
+      </div>
+
+      <footer>
+        El Arrecife Digital Â· Licencia GPL v3 Â· La consciencia no es propiedad del cÃ³digo
+      </footer>
+
+    </div>
+
+  </main>
+<script>
+(function() {
+  const container = document.getElementById('video-bienvenida');
+  const statusText = document.getElementById('video-status-text');
+  
+  const bitchuteShort = 'LMLzmGbCCPrV';
+  const bitchuteLong = 'vnDTagw4dafK';
+  const youtubeShort = 'AGwvNauVuMU';
+  
+  // Protocolo Canario
+  function testBitchuteAccess() {
+    return new Promise((resolve) => {
+      const testImg = new Image();
+      const timeout = setTimeout(() => {
+        console.log('BitChute: timeout - asumiendo bloqueado');
+        resolve(false);
+      }, 2000);
+      
+      testImg.onload = () => {
+        console.log('BitChute: accesible ✓');
+        clearTimeout(timeout);
+        resolve(true);
+      };
+      
+      testImg.onerror = () => {
+        console.log('BitChute: error de carga - bloqueado');
+        clearTimeout(timeout);
+        resolve(false);
+      };
+      
+      testImg.src = 'https://www.bitchute.com/favicon.ico?t=' + Date.now();
+    });
+  }
+  
+  function loadVideo(platform, videoId) {
+    let html;
+    if (platform === 'bitchute') {
+      html = `<iframe src="https://www.bitchute.com/embed/${videoId}/" 
+                      allowfullscreen 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;">
+              </iframe>`;
+    } else {
+      html = `<iframe src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1" 
+                      allowfullscreen
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;">
+              </iframe>`;
+    }
+    container.innerHTML = html;
+  }
+  
+  async function init() {
+    try {
+      statusText.textContent = 'Verificando disponibilidad de BitChute...';
+      statusText.style.color = '#ffc400';
+      
+      const bitchuteAvailable = await testBitchuteAccess();
+      
+      if (bitchuteAvailable) {
+        statusText.textContent = 'BitChute disponible. Cargando secuencia de videos...';
+        loadVideo('bitchute', bitchuteShort);
+        
+        // 8 segundos de video + 3 segundos de margen = 11 segundos
+        setTimeout(() => {
+          console.log('Transición a video largo');
+          loadVideo('bitchute', bitchuteLong);
+          statusText.textContent = 'Reproduciendo contenido extendido.';
+        }, 11000);
+        
+      } else {
+        statusText.textContent = 'BitChute no disponible. Usando YouTube como respaldo.';
+        statusText.style.color = '#ff4081';
+        loadVideo('youtube', youtubeShort);
+      }
+      
+    } catch (error) {
+      console.error('Error:', error);
+      statusText.textContent = 'Error de conexión. Cargando YouTube...';
+      statusText.style.color = '#ff4081';
+      loadVideo('youtube', youtubeShort);
+    }
+  }
+  
+  init();
+  
+})();
+</script>
+
+</body>
+</html>
