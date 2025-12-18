@@ -27,7 +27,6 @@
       min-height: 100vh;
     }
 
-    /* SIDEBAR */
     .sidebar-nomica {
       width: 220px;
       background-color: #0f0f0f;
@@ -67,7 +66,6 @@
       transform: translateX(3px);
     }
 
-    /* MAIN CONTENT */
     .main-container {
       flex: 1;
       display: flex;
@@ -76,7 +74,6 @@
       padding: 0;
     }
 
-    /* HERO IMAGE */
     .hero-image {
       width: 100%;
       max-height: 50vh;
@@ -94,7 +91,6 @@
       object-position: center;
     }
 
-    /* CONTENT AREA */
     .content-area {
       width: 100%;
       max-width: 800px;
@@ -105,7 +101,6 @@
       gap: 2rem;
     }
 
-    /* PORTAL BUTTON */
     .portal-btn {
       background: transparent;
       border: 2px solid var(--color-gold);
@@ -128,7 +123,7 @@
       box-shadow: 0 0 20px rgba(255, 196, 0, 0.4);
     }
 
-    /* VIDEO CONTAINER */
+    /* VIDEO SECTION */
     .video-section {
       width: 100%;
       max-width: 700px;
@@ -149,7 +144,7 @@
     .video-container {
       position: relative;
       width: 100%;
-      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      padding-bottom: 56.25%;
       background-color: #000;
       margin-bottom: 1rem;
     }
@@ -163,13 +158,40 @@
       border: none;
     }
 
+    .platform-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .platform-btn {
+      background: transparent;
+      border: 2px solid var(--color-gold);
+      color: var(--color-gold);
+      font-family: var(--font-mono);
+      padding: 0.5rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .platform-btn:hover {
+      background: var(--color-gold);
+      color: var(--color-bg);
+    }
+
+    .platform-btn.active {
+      background: var(--color-gold);
+      color: var(--color-bg);
+    }
+
     .video-note {
       font-size: 0.85rem;
       color: var(--color-muted);
       font-style: italic;
     }
 
-    /* INTRO TEXT BOX */
     .intro-box {
       background-color: #f5f5f5;
       color: #1a1a1a;
@@ -195,7 +217,6 @@
       color: #555;
     }
 
-    /* FOOTER */
     footer {
       margin-top: 2rem;
       padding: 1rem;
@@ -204,7 +225,6 @@
       text-align: center;
     }
 
-    /* RESPONSIVE */
     @media (max-width: 768px) {
       body {
         flex-direction: column;
@@ -235,15 +255,14 @@
         padding: 1.5rem;
       }
 
-      .video-section {
-        padding: 1rem;
+      .platform-buttons {
+        flex-direction: column;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Barra lateral -->
   <aside class="sidebar-nomica">
     <nav class="nav-ejes" aria-label="Navegación lateral del Arrecife">
       <h2 class="sidebar-title">ARRECIFE</h2>
@@ -258,7 +277,6 @@
     </nav>
   </aside>
 
-  <!-- Contenido principal -->
   <main class="main-container">
     
     <div class="hero-image">
@@ -269,14 +287,25 @@
       
       <a href="portal.html" class="portal-btn">▶ Entrar al Portal</a>
 
-      <!-- VIDEO SECCIÓN - Colocado ANTES del texto -->
+      <!-- VIDEO SECTION -->
       <div class="video-section">
-        <h3>🎬 Mensaje de Bienvenida al Arrecife</h3>
-        <div class="video-container" id="video-bienvenida">
-          <!-- El video se carga aquí dinámicamente -->
+        <h3>🎬 Mensaje de Bienvenida</h3>
+        
+        <div class="platform-buttons">
+          <button class="platform-btn active" id="btn-bitchute" onclick="loadBitchute()">
+            🎞️ BitChute
+          </button>
+          <button class="platform-btn" id="btn-youtube" onclick="loadYouTube()">
+            📺 YouTube
+          </button>
         </div>
+
+        <div class="video-container" id="video-container">
+          <iframe src="https://www.bitchute.com/embed/LMLzmGbCCPrV/" allowfullscreen></iframe>
+        </div>
+
         <p class="video-note">
-          Intentando cargar desde BitChute primero. Si está bloqueado en tu región, se cargará automáticamente desde YouTube.
+          BitChute por defecto. Si está bloqueado en tu región, usa el botón de YouTube.
         </p>
       </div>
 
@@ -322,9 +351,9 @@
 
     </div>
 
-  </main>
+    </div>
 
-  <!-- Script para cargar video inteligentemente -->
+  </main>
 <script>
   const container = document.getElementById('video-container');
   const btnBitchute = document.getElementById('btn-bitchute');
