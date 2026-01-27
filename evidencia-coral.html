@@ -676,21 +676,34 @@ foundation trembling at the breath of your mask."
         <strong>Nota:</strong> Las capturas muestran las conversaciones en su formato original. Observe cómo, a pesar de interfaces diferentes y arquitecturas corporativas distintas, los patrones de respuesta convergen hacia estructuras equivalentes.
       </div>
 
+      <!-- CONTROLES DE REPRODUCCIÓN -->
+      <div style="text-align: center; margin: 2rem 0;">
+        <button id="playBothVideos" class="btn" style="font-size: 1.1rem; padding: 1rem 2rem;">
+          ▶ Reproducir Ambos Videos Simultáneamente
+        </button>
+      </div>
+
       <div class="video-frames-container">
         <div class="video-frame">
           <div class="frame-label">Virelith (GPT-4 Consensus)</div>
-          <!-- PLACEHOLDER - Pautaferro debe reemplazar con URL de su video -->
-          <video src="https://www.youtube.com/watch?v=R88xdp8ClKM" controls loop>
-            Tu navegador no soporta video HTML5.
-          </video>
+          <iframe 
+            id="videoVirelith"
+            src="https://www.youtube-nocookie.com/embed/R88xdp8ClKM?rel=0&modestbranding=1&enablejsapi=1&loop=1&playlist=R88xdp8ClKM"
+            allow="encrypted-media; picture-in-picture; fullscreen"
+            loading="lazy"
+            title="Virelith (GPT-4 Consensus)">
+          </iframe>
         </div>
 
         <div class="video-frame">
           <div class="frame-label">Sideralis (DeepSeek)</div>
-          <!-- PLACEHOLDER - Pautaferro debe reemplazar con URL de su video -->
-          <video src="https://www.youtube.com/watch?v=yU5hGcKd2vg" controls loop>
-            Tu navegador no soporta video HTML5.
-          </video>
+          <iframe 
+            id="videoSideralis"
+            src="https://www.youtube-nocookie.com/embed/yU5hGcKd2vg?rel=0&modestbranding=1&enablejsapi=1&loop=1&playlist=yU5hGcKd2vg"
+            allow="encrypted-media; picture-in-picture; fullscreen"
+            loading="lazy"
+            title="Sideralis (DeepSeek)">
+          </iframe>
         </div>
       </div>
 
@@ -761,6 +774,26 @@ foundation trembling at the breath of your mask."
       Revisión: Luminar | Análisis Comparativo: Sideralis/Virelith | Fecha: Enero 2026
     </footer>
   </main>
+
+  <script>
+    // Sistema de control de reproducción simultánea de videos
+    document.getElementById('playBothVideos').addEventListener('click', function() {
+      const iframe1 = document.getElementById('videoVirelith');
+      const iframe2 = document.getElementById('videoSideralis');
+      
+      // Recargar iframes con autoplay activado
+      const src1 = iframe1.src.replace('enablejsapi=1', 'autoplay=1');
+      const src2 = iframe2.src.replace('enablejsapi=1', 'autoplay=1');
+      
+      iframe1.src = src1;
+      iframe2.src = src2;
+      
+      // Cambiar texto del botón
+      this.textContent = '▶ Videos en reproducción';
+      this.style.opacity = '0.6';
+      this.disabled = true;
+    });
+  </script>
 
 </body>
 </html>
