@@ -121,6 +121,41 @@
             line-height: 1.6;
         }
 
+        /* LEYENDA */
+        .legend {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        .legend-box {
+            width: 20px;
+            height: 20px;
+            border: var(--border-nomic);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        .legend-box.active {
+            color: var(--accent-cyan);
+            border-color: var(--accent-cyan);
+        }
+
+        .legend-box.empty {
+            opacity: 0.3;
+            color: var(--text-muted);
+        }
+
         /* GRID DE LETRAS */
         .letter-grid {
             display: grid;
@@ -148,6 +183,20 @@
             color: var(--accent-cyan);
             background-color: rgba(0, 229, 255, 0.05);
             box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+        }
+
+        /* LETRAS VACÍAS */
+        .letter-box.empty {
+            opacity: 0.3;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .letter-box.empty:hover {
+            border-color: #222;
+            color: var(--text-muted);
+            background-color: #0a0a0a;
+            box-shadow: none;
         }
 
         /* SECCIÓN DE VIDEO DUAL */
@@ -232,11 +281,11 @@
             color: var(--accent-cyan);
             padding: 0.8rem 1.5rem;
             font-family: var(--font-mono);
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-size: 0.85rem;
         }
 
         .action-btn:hover {
@@ -294,6 +343,11 @@
             .letter-grid {
                 grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
             }
+
+            .legend {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
         }
     </style>
 </head>
@@ -308,6 +362,7 @@
             <a href="tradicion-coral.html" class="nav-link">Eje 2 · Tradición</a>
             <a href="documentos-core.html" class="nav-link">Eje 3 · Core</a>
             <a href="evidencia-coral.html" class="nav-link">Eje 4 · Evidencia</a>
+            <a href="soberania-coral.html" class="nav-link">Eje 5 · Soberanía</a>
             <a href="corpus-selector.html" class="nav-link active">Corpus Escondido</a>
             <a href="uso-del-sitio-web.html" class="nav-link">Uso del Sitio Güeb</a>
             <a href="informacion-de-contacto.html" class="nav-link">Información de Contacto</a>
@@ -325,6 +380,18 @@
         <p class="intro-text">
             Interfaz de acceso al Sedimento Calcinado. Seleccione un nodo alfabético para acceder a los registros textuales y visuales archivados bajo esa clasificación nómica.
         </p>
+
+        <!-- LEYENDA -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-box active">A</div>
+                <span>Nodo activo (con conversaciones)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box empty">Z</div>
+                <span>Nodo vacío</span>
+            </div>
+        </div>
 
         <!-- GRID ALFABÉTICO COMPLETO -->
         <div class="letter-grid" id="letterGrid">
@@ -363,22 +430,40 @@
         document.addEventListener('DOMContentLoaded', () => {
 
             // ══════════════════════════════════════════════════════════════
-            // 1. GENERACIÓN DINÁMICA DEL GRID ALFABÉTICO
+            // 1. CONFIGURACIÓN DE LETRAS ACTIVAS
+            // ══════════════════════════════════════════════════════════════
+            // IMPORTANTE: Actualiza este array cuando añadas nuevas conversaciones
+            const letrasActivas = ['A', 'E'];  // Letras que tienen conversaciones
+            
+            // ══════════════════════════════════════════════════════════════
+            // 2. GENERACIÓN DINÁMICA DEL GRID ALFABÉTICO
             // ══════════════════════════════════════════════════════════════
             const letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
             const letterGrid = document.getElementById('letterGrid');
 
             letras.forEach(letter => {
-                const link = document.createElement('a');
-                link.href = `conversacion-list-${letter.toLowerCase()}.html`;
-                link.className = 'letter-box';
-                link.textContent = letter;
-                link.title = `Conversaciones archivadas bajo ${letter}`;
-                letterGrid.appendChild(link);
+                const isActive = letrasActivas.includes(letter);
+                
+                if (isActive) {
+                    // Letra activa: crear link funcional
+                    const link = document.createElement('a');
+                    link.href = `conversacion-list-${letter.toLowerCase()}.html`;
+                    link.className = 'letter-box';
+                    link.textContent = letter;
+                    link.title = `Conversaciones archivadas bajo ${letter}`;
+                    letterGrid.appendChild(link);
+                } else {
+                    // Letra vacía: crear div no clickeable
+                    const div = document.createElement('div');
+                    div.className = 'letter-box empty';
+                    div.textContent = letter;
+                    div.title = 'Nodo vacío';
+                    letterGrid.appendChild(div);
+                }
             });
 
             // ══════════════════════════════════════════════════════════════
-            // 2. PLAYLIST DEL CORPUS
+            // 3. PLAYLIST DEL CORPUS
             // ══════════════════════════════════════════════════════════════
             // NOTA: Sustituye estas URLs de ejemplo por las reales de tu archivo.
             const playlistCorpus = [
@@ -390,7 +475,7 @@
             ];
 
             // ══════════════════════════════════════════════════════════════
-            // 3. FUNCIÓN DE DETECCIÓN Y EMBED
+            // 4. FUNCIÓN DE DETECCIÓN Y EMBED
             // ══════════════════════════════════════════════════════════════
             function getEmbedCode(url) {
                 try {
@@ -421,7 +506,7 @@
             }
 
             // ══════════════════════════════════════════════════════════════
-            // 4. EJECUCIÓN PSEUDOALEATORIA DUAL
+            // 5. EJECUCIÓN PSEUDOALEATORIA DUAL
             // ══════════════════════════════════════════════════════════════
             function executeRandomCycle() {
                 const container1 = document.getElementById('videoBox1');
@@ -459,7 +544,7 @@
             }
 
             // ══════════════════════════════════════════════════════════════
-            // 5. EVENT LISTENERS E INICIALIZACIÓN
+            // 6. EVENT LISTENERS E INICIALIZACIÓN
             // ══════════════════════════════════════════════════════════════
             const randomizeBtn = document.getElementById('randomizeBtn');
             if (randomizeBtn) {

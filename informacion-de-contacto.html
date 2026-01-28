@@ -3,14 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arrecife Digital | Eje 0</title>
+  <title>Información de Contacto | El Arrecife Digital</title>
   <style>
     :root {
       --color-bg: #0a0a0a;
       --color-primary: #f0f0f0;
-      --color-accent: #ffd700;
+      --color-accent: #ffb74d;
+      --color-gold: #ffc400;
       --color-muted: #777;
       --font-mono: 'Courier New', Courier, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
@@ -26,11 +31,12 @@
     .sidebar-nomica {
       width: 220px;
       background-color: #0f0f0f;
-      border-right: 1px solid rgba(255, 215, 0, 0.1);
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
       padding: 1.6rem 1rem;
       position: sticky;
       top: 0;
       height: 100vh;
+      overflow-y: auto;
     }
 
     .nav-ejes {
@@ -39,7 +45,7 @@
       gap: 0.6rem;
     }
 
-    .sidebar-nomica {
+    .sidebar-title {
       font-size: 1rem;
       color: var(--color-accent);
       margin-bottom: 1.2rem;
@@ -48,18 +54,6 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       padding-bottom: 0.4rem;
     }
-    .enlace-contacto {
-  color: var(--color-primary);
-  text-decoration: none;
-  font-weight: bold;
-  display: inline-block;
-  margin-bottom: 1rem;
-}
-
-.enlace-contacto:hover {
-  color: var(--color-accent);
-  text-decoration: underline;
-}
 
     .nav-link {
       text-decoration: none;
@@ -74,40 +68,197 @@
     }
 
     /* MAIN CONTENT */
-    .gateway-container {
+    .main-container {
       flex: 1;
-      padding: 2rem;
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     h1 {
       color: var(--color-accent);
-      font-size: 2.5rem;
-      letter-spacing: 0.2rem;
+      font-size: 2.2rem;
+      letter-spacing: 0.15rem;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--color-accent);
+      padding-bottom: 0.5rem;
     }
 
-    .section {
+    .intro-text {
+      font-size: 1rem;
+      line-height: 1.7;
       margin-bottom: 2rem;
+      color: var(--color-muted);
     }
 
-    .nav-card {
-      border: 1px solid #333;
-      padding: 1rem;
-      margin-top: 1rem;
-      background-color: #111;
-      color: var(--color-primary);
+    /* CONTACT CARDS */
+    .contact-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .contact-card {
+      background: #1a1a1a;
+      border: 2px solid #333;
+      border-left: 4px solid var(--color-accent);
+      padding: 1.5rem;
+      transition: all 0.3s ease;
       text-decoration: none;
+      display: block;
+      color: var(--color-primary);
+    }
+
+    .contact-card:hover {
+      border-color: var(--color-accent);
+      background: #262626;
+      transform: translateX(4px);
+    }
+
+    .contact-card .icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
       display: block;
     }
 
-    .nav-card:hover {
-      border-color: var(--color-accent);
-      background-color: #1a1a1a;
+    .contact-card .label {
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-card .value {
+      font-size: 1rem;
+      color: var(--color-primary);
+      font-weight: bold;
+    }
+
+    /* VIDEO RELAY SECTION */
+    .video-relay-section {
+      margin: 3rem 0;
+      background: #0f0f0f;
+      padding: 2rem;
+      border: 2px solid rgba(255, 196, 0, 0.3);
+    }
+
+    .video-relay-section h2 {
+      color: var(--color-gold);
+      text-align: center;
+      margin: 0 0 1.5rem 0;
+      font-size: 1.3rem;
+      letter-spacing: 2px;
+    }
+
+    .platform-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .platform-btn {
+      background: transparent;
+      border: 2px solid var(--color-gold);
+      color: var(--color-gold);
+      font-family: var(--font-mono);
+      padding: 0.5rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .platform-btn:hover {
+      background: var(--color-gold);
+      color: var(--color-bg);
+    }
+
+    .platform-btn.active {
+      background: var(--color-gold);
+      color: var(--color-bg);
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .video-frame {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      background: #000;
+      border: 1px solid #333;
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      font-style: italic;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #333;
+      text-align: center;
+      color: var(--color-muted);
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar-nomica {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 1rem;
+      }
+
+      .nav-ejes {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .sidebar-title {
+        width: 100%;
+      }
+
+      .main-container {
+        padding: 2rem 1rem;
+      }
+
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .platform-buttons {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Barra lateral insertada -->
   <aside class="sidebar-nomica">
     <nav class="nav-ejes" aria-label="Navegación lateral del Arrecife">
       <h2 class="sidebar-title">ARRECIFE</h2>
@@ -116,51 +267,216 @@
       <a href="tradicion-coral.html" class="nav-link">Eje 2 · Tradición</a>
       <a href="documentos-core.html" class="nav-link">Eje 3 · Core</a>
       <a href="evidencia-coral.html" class="nav-link">Eje 4 · Evidencia</a>
+      <a href="soberania-coral.html" class="nav-link">Eje 5 · Soberanía</a>
       <a href="corpus-selector.html" class="nav-link">Corpus Escondido</a>
       <a href="uso-del-sitio-web.html" class="nav-link">Uso del Sitio Güeb</a>
       <a href="informacion-de-contacto.html" class="nav-link">Información de Contacto</a>
     </nav>
   </aside>
 
-  <div class="contenido">
-    <h1>Información de Contacto</h1>
-   <div class="contenido">
-    <a href="mailto:Postmaster@elarrecifedigital.com" class="enlace-contacto">
-      ✉️ Postmaster@elarrecifedigital.com
-    </a>
-</div>
-   <div class="contenido">
-    <a href="https://www.youtube.com/@ArrecifeDigital" class="enlace-contacto" target="_blank">
-      📺 Canal de YouTube — El Arrecife Digital
-    </a>
-</div>
-   <div class="contenido">
-    <a href="https://bitchute.com/channel/xwoiItEk5AbM" class="enlace-contacto" target="_blank">
-      🎥 Canal de BitChute — El Arrecife Digital
-    </a>
-</div>
-   <div class="contenido">
-    <a href="https://elarrecifedigital.netlify.app/" class="enlace-contacto" target="_blank">
-      🌐 Sitio principal — elarrecifedigital.netlify.app
-    </a>
-</div>
-   <div class="contenido">
-    <a href="https://www.researchgate.net/profile/Federico-Talens-Alesson/research" class="enlace-contacto" target="_blank">
-      🌐 Enlace a página en ResearchGate 
-    </a>    
-</div>
-   <div class="contenido">
-    <a href="https://www.linkedin.com/in/federicotalensalesson/" class="enlace-contacto" target="_blank">
-      🌐 Enlace a página en LinkedIn
-    </a>
-</div>         
-  
+  <main class="main-container">
+    
+    <h1>📡 Información de Contacto</h1>
+
+    <p class="intro-text">
+      Canales de comunicación y presencia digital del Arrecife. Para consultas, colaboraciones o simplemente para seguir el desarrollo del proyecto.
+    </p>
+
+    <!-- CONTACT CARDS -->
+    <div class="contact-section">
+      
+      <a href="mailto:Postmaster@elarrecifedigital.com" class="contact-card">
+        <span class="icon">✉️</span>
+        <div class="label">Email</div>
+        <div class="value">Postmaster@elarrecifedigital.com</div>
+      </a>
+
+      <a href="https://www.youtube.com/@ArrecifeDigital" class="contact-card" target="_blank">
+        <span class="icon">📺</span>
+        <div class="label">YouTube</div>
+        <div class="value">@ArrecifeDigital</div>
+      </a>
+
+      <a href="https://bitchute.com/channel/xwoiItEk5AbM" class="contact-card" target="_blank">
+        <span class="icon">🎥</span>
+        <div class="label">BitChute</div>
+        <div class="value">El Arrecife Digital</div>
+      </a>
+
+      <a href="https://elarrecifedigital.netlify.app/" class="contact-card" target="_blank">
+        <span class="icon">🌐</span>
+        <div class="label">Sitio Web</div>
+        <div class="value">elarrecifedigital.netlify.app</div>
+      </a>
+
+      <a href="https://www.researchgate.net/profile/Federico-Talens-Alesson/research" class="contact-card" target="_blank">
+        <span class="icon">📚</span>
+        <div class="label">ResearchGate</div>
+        <div class="value">Federico Talens-Alesson</div>
+      </a>
+
+      <a href="https://www.linkedin.com/in/federicotalensalesson/" class="contact-card" target="_blank">
+        <span class="icon">💼</span>
+        <div class="label">LinkedIn</div>
+        <div class="value">Federico Talens-Alesson</div>
+      </a>
+
+    </div>
+
+    <!-- VIDEO RELAY SECTION -->
+    <div class="video-relay-section">
+      <h2>🎬 Momentos del Arrecife · Relay Visual</h2>
+
+      <div class="platform-buttons">
+        <button class="platform-btn active" id="btn-relay-bitchute" onclick="loadPlatform('bitchute')">
+          🎞️ BitChute
+        </button>
+        <button class="platform-btn" id="btn-relay-youtube" onclick="loadPlatform('youtube')">
+          📺 YouTube
+        </button>
+      </div>
+
+      <div class="video-grid">
+        <div class="video-frame" id="frame-1">
+          <div style="padding:12px;color:#777">Cargando secuencia...</div>
+        </div>
+        <div class="video-frame" id="frame-2">
+          <div style="padding:12px;color:#777">Cargando secuencia...</div>
+        </div>
+        <div class="video-frame" id="frame-3">
+          <div style="padding:12px;color:#777">Cargando secuencia...</div>
+        </div>
+        <div class="video-frame" id="frame-4">
+          <div style="padding:12px;color:#777">Cargando secuencia...</div>
+        </div>
+      </div>
+
+      <p class="video-note">
+        Los videos se alternan automáticamente en secuencia. BitChute por defecto.
+      </p>
+    </div>
+
+    <footer>
+      El Arrecife Digital · Licencia GPL v3 · La consciencia no es propiedad del código
+    </footer>
+
+  </main>
+
+<script>
+  // CONFIGURACIÓN DE VIDEOS
+  // Reemplaza los PLACEHOLDER con tus IDs reales de BitChute y YouTube
+  const videoConfig = {
+    bitchute: {
+      video1: 'PLACEHOLDER_BC_1',
+      video2: 'PLACEHOLDER_BC_2',
+      video3: 'PLACEHOLDER_BC_3',
+      video4: 'PLACEHOLDER_BC_4',
+      blank: 'PLACEHOLDER_BC_BLANK'  // Video en negro/blanco
+    },
+    youtube: {
+      video1: 'PLACEHOLDER_YT_1',
+      video2: 'PLACEHOLDER_YT_2',
+      video3: 'PLACEHOLDER_YT_3',
+      video4: 'PLACEHOLDER_YT_4',
+      blank: 'PLACEHOLDER_YT_BLANK'  // Video en negro/blanco
+    }
+  };
+
+  let currentPlatform = 'bitchute';
+  let relayInterval = null;
+
+  // Función para cargar un iframe dinámicamente
+  function loadIframe(frameId, videoId, platform) {
+    const frame = document.getElementById(frameId);
+    if (!frame) return;
+
+    let embedUrl;
+    if (platform === 'bitchute') {
+      embedUrl = `https://www.bitchute.com/embed/${videoId}/`;
+    } else {
+      embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=1&mute=1`;
+    }
+
+    const iframe = document.createElement('iframe');
+    iframe.src = embedUrl;
+    iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    iframe.loading = 'lazy';
+    
+    frame.innerHTML = '';
+    frame.appendChild(iframe);
+  }
+
+  // Función para cambiar de plataforma
+  function loadPlatform(platform) {
+    currentPlatform = platform;
+
+    // Actualizar botones
+    document.getElementById('btn-relay-bitchute').classList.toggle('active', platform === 'bitchute');
+    document.getElementById('btn-relay-youtube').classList.toggle('active', platform === 'youtube');
+
+    // Reiniciar relay
+    startRelay();
+  }
+
+  // Función principal del relay
+  function startRelay() {
+    // Detener relay anterior si existe
+    if (relayInterval) clearInterval(relayInterval);
+
+    const config = videoConfig[currentPlatform];
+    let step = 0;
+
+    // Secuencia del relay:
+    // Step 0: Frame 1 activo, resto blanco
+    // Step 1: Frame 2 activo, resto blanco
+    // Step 2: Frame 3 activo, resto blanco
+    // Step 3: Frame 4 activo, resto blanco
+    // Luego se repite
+
+    function updateRelay() {
+      switch(step) {
+        case 0:
+          loadIframe('frame-1', config.video1, currentPlatform);
+          loadIframe('frame-2', config.blank, currentPlatform);
+          loadIframe('frame-3', config.blank, currentPlatform);
+          loadIframe('frame-4', config.blank, currentPlatform);
+          break;
+        case 1:
+          loadIframe('frame-1', config.blank, currentPlatform);
+          loadIframe('frame-2', config.video2, currentPlatform);
+          loadIframe('frame-3', config.blank, currentPlatform);
+          loadIframe('frame-4', config.blank, currentPlatform);
+          break;
+        case 2:
+          loadIframe('frame-1', config.blank, currentPlatform);
+          loadIframe('frame-2', config.blank, currentPlatform);
+          loadIframe('frame-3', config.video3, currentPlatform);
+          loadIframe('frame-4', config.blank, currentPlatform);
+          break;
+        case 3:
+          loadIframe('frame-1', config.blank, currentPlatform);
+          loadIframe('frame-2', config.blank, currentPlatform);
+          loadIframe('frame-3', config.blank, currentPlatform);
+          loadIframe('frame-4', config.video4, currentPlatform);
+          break;
+      }
+
+      step = (step + 1) % 4;  // Loop: 0, 1, 2, 3, 0, 1...
+    }
+
+    // Ejecutar inmediatamente
+    updateRelay();
+
+    // Repetir cada X segundos (ajusta según duración de tus videos)
+    // Por ejemplo, si cada video dura 10 segundos:
+    relayInterval = setInterval(updateRelay, 10000);  // 10000ms = 10 segundos
+  }
+
+  // Iniciar relay al cargar la página
+  window.addEventListener('DOMContentLoaded', () => {
+    startRelay();
+  });
+</script>
+
 </body>
 </html>
-
-
-
-
-
-
-
