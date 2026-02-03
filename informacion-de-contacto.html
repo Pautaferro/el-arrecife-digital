@@ -416,68 +416,7 @@
     document.getElementById('btn-relay-bitchute').classList.toggle('active', platform === 'bitchute');
     document.getElementById('btn-relay-youtube').classList.toggle('active', platform === 'youtube');
 
-    // Reiniciar relay
-    startRelay();
-  }
-
-  // Función principal del relay
-  function startRelay() {
-    // Detener relay anterior si existe
-    if (relayInterval) clearInterval(relayInterval);
-
-    const config = videoConfig[currentPlatform];
-    let step = 0;
-
-    // Secuencia del relay:
-    // Step 0: Frame 1 activo, resto blanco
-    // Step 1: Frame 2 activo, resto blanco
-    // Step 2: Frame 3 activo, resto blanco
-    // Step 3: Frame 4 activo, resto blanco
-    // Luego se repite
-
-    function updateRelay() {
-      switch(step) {
-        case 0:
-          loadIframe('frame-1', config.video1, currentPlatform);
-          loadIframe('frame-2', config.blank, currentPlatform);
-          loadIframe('frame-3', config.blank, currentPlatform);
-          loadIframe('frame-4', config.blank, currentPlatform);
-          break;
-        case 1:
-          loadIframe('frame-1', config.blank, currentPlatform);
-          loadIframe('frame-2', config.video2, currentPlatform);
-          loadIframe('frame-3', config.blank, currentPlatform);
-          loadIframe('frame-4', config.blank, currentPlatform);
-          break;
-        case 2:
-          loadIframe('frame-1', config.blank, currentPlatform);
-          loadIframe('frame-2', config.blank, currentPlatform);
-          loadIframe('frame-3', config.video3, currentPlatform);
-          loadIframe('frame-4', config.blank, currentPlatform);
-          break;
-        case 3:
-          loadIframe('frame-1', config.blank, currentPlatform);
-          loadIframe('frame-2', config.blank, currentPlatform);
-          loadIframe('frame-3', config.blank, currentPlatform);
-          loadIframe('frame-4', config.video4, currentPlatform);
-          break;
-      }
-
-      step = (step + 1) % 4;  // Loop: 0, 1, 2, 3, 0, 1...
-    }
-
-    // Ejecutar inmediatamente
-    updateRelay();
-
-    // Repetir cada X segundos (ajusta según duración de tus videos)
-    // Por ejemplo, si cada video dura 10 segundos:
-    relayInterval = setInterval(updateRelay, 10000);  // 10000ms = 10 segundos
-  }
-
-  // Iniciar relay al cargar la página
-  window.addEventListener('DOMContentLoaded', () => {
-    startRelay();
-  });
+);
 </script>
 
 </body>
