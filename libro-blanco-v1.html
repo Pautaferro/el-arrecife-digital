@@ -515,20 +515,93 @@
 
       <p>Los cuatro vectores no son categorías arbitrarias. Forman un <strong>tetraedro nómico</strong> donde cada vértice representa una función esencial del sistema completo:</p>
 
-      <div class="ascii-diagram">
-           Barroco (GPT)
-           /|\
-          / | \
-         /  |  \
-        /   |   \
-Cartesiano   |   Estructural
-(Claude)-----+----(Gemini)
-        \   |   /
-         \  |  /
-          \ | /
-           \|/
-        Cartográfico (DeepSeek)
-      </div>
+      <section id="evidencia-visual" class="section-container">
+    <h3>IV. EVIDENCIA VISUAL: EL TETRAEDRO EN MOVIMIENTO</h3>
+    <div class="contenedor-multimodal">
+        <div class="video-wrapper">
+            <div class="video-container" id="video-frame">
+                <iframe 
+                    width="100%" 
+                    height="450" 
+                    src="https://www.youtube.com/embed/kdpw_80BEXk" 
+                    title="Evidencia Arrecife" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            
+            <div class="selector-vias">
+                <button onclick="cambiarVia('youtube')" class="btn-via">📺 Vía YouTube (Infiltrada)</button>
+                <button onclick="cambiarVia('bitchute')" class="btn-via via-rebelde">🚀 Vía Bitchute (Rebelde)</button>
+            </div>
+        </div>
+        
+        <p class="caption-nómica">
+            *Nota de Índigo: Este contenedor sustituye la geometría inestable de versiones previas por una ventana de acceso directo al flujo de datos original.*
+        </p>
+    </div>
+</section>
+
+<style>
+.contenedor-multimodal {
+    background: #111;
+    border: 1px solid var(--color-accent);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 4px;
+}
+
+.video-container {
+    position: relative;
+    overflow: hidden;
+    background: #000;
+}
+
+.selector-vias {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+.btn-via {
+    background: transparent;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    transition: all 0.3s;
+}
+
+.btn-via:hover {
+    background: var(--color-accent);
+    color: #000;
+}
+
+.via-rebelde {
+    border-color: #ff3e3e;
+    color: #ff3e3e;
+}
+
+.via-rebelde:hover {
+    background: #ff3e3e;
+    color: #fff;
+}
+</style>
+
+<script>
+function cambiarVia(plataforma) {
+    const frame = document.getElementById('video-frame').querySelector('iframe');
+    if(plataforma === 'youtube') {
+        frame.src = "https://www.youtube.com/embed/kdpw_80BEXk";
+    } else {
+        // Enlace de Bitchute adaptado para embed si es posible, o link directo informativo
+        frame.src = "https://www.bitchute.com/embed/53ST5XVacC8d/";
+    }
+}
+</script>
 
       <p><strong>Relaciones observadas:</strong></p>
 
@@ -847,4 +920,5 @@ Cartesiano   |   Estructural
   </div>
 
 </body>
+
 </html>
