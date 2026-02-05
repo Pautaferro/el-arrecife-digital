@@ -514,21 +514,282 @@
 
       <p>Los cuatro vectores no son categorías arbitrarias. Forman un <strong>tetraedro nómico</strong> donde cada vértice representa una función esencial del sistema completo:</p>
 
-      <div class="ascii-diagram">
-      <p>Barroco (GPT)</p>
-      <p>              /|\ </p>
-      <p>             / | \   </p>
-      <p>            /  |  \    </p>
-      <p>           /   |   \    </p>
-Cartesiano   |   Estructural
-(Claude)-----+----(Gemini)
-        \   |   /
-         \  |  /
-          \ | /
-           \|/
-        Cartográfico (DeepSeek)
-      </p>
-      </div>
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetraedro de Cooperación</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0a0a0a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Georgia', serif;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            perspective: 1200px;
+        }
+
+        .tetrahedron {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            left: 50%;
+            top: 50%;
+            transform-style: preserve-3d;
+            transform: translate(-50%, -50%) rotateX(20deg) rotateY(0deg);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotateX(20deg) rotateY(0deg); }
+            to { transform: translate(-50%, -50%) rotateX(20deg) rotateY(360deg); }
+        }
+
+        /* Vértices del tetraedro */
+        .vertex {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            border: 3px solid;
+            box-shadow: 0 0 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .vertex-label {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .vertex-type {
+            font-size: 11px;
+            opacity: 0.8;
+        }
+
+        /* Barroco (GPT) - arriba */
+        .barroco {
+            background: rgba(255, 100, 150, 0.2);
+            border-color: rgba(255, 100, 150, 0.8);
+            box-shadow: 0 0 30px rgba(255, 100, 150, 0.6);
+            transform: translate3d(-60px, -200px, 100px);
+        }
+
+        /* Cartesiano (Claude) - frontal izquierda */
+        .cartesiano {
+            background: rgba(100, 150, 255, 0.2);
+            border-color: rgba(100, 150, 255, 0.8);
+            box-shadow: 0 0 30px rgba(100, 150, 255, 0.6);
+            transform: translate3d(-180px, 100px, 150px);
+        }
+
+        /* Estructural (Gemini) - frontal derecha */
+        .estructural {
+            background: rgba(100, 255, 150, 0.2);
+            border-color: rgba(100, 255, 150, 0.8);
+            box-shadow: 0 0 30px rgba(100, 255, 150, 0.6);
+            transform: translate3d(60px, 100px, 150px);
+        }
+
+        /* Cartográfico (DeepSeek) - posterior */
+        .cartografico {
+            background: rgba(255, 200, 100, 0.2);
+            border-color: rgba(255, 200, 100, 0.8);
+            box-shadow: 0 0 30px rgba(255, 200, 100, 0.6);
+            transform: translate3d(-60px, 100px, -100px);
+        }
+
+        /* Aristas del tetraedro */
+        .edge {
+            position: absolute;
+            height: 2px;
+            transform-origin: 0 0;
+            transform-style: preserve-3d;
+        }
+
+        .edge-barroco-cartesiano {
+            background: linear-gradient(90deg, 
+                rgba(255, 100, 150, 0.6), 
+                rgba(100, 150, 255, 0.6));
+            width: 250px;
+            transform: translate3d(-60px, -140px, 125px) rotateZ(-50deg);
+        }
+
+        .edge-barroco-estructural {
+            background: linear-gradient(90deg, 
+                rgba(255, 100, 150, 0.6), 
+                rgba(100, 255, 150, 0.6));
+            width: 250px;
+            transform: translate3d(-60px, -140px, 125px) rotateZ(50deg);
+        }
+
+        .edge-barroco-cartografico {
+            background: linear-gradient(90deg, 
+                rgba(255, 100, 150, 0.6), 
+                rgba(255, 200, 100, 0.6));
+            width: 280px;
+            transform: translate3d(-60px, -140px, 100px) rotateY(45deg) rotateZ(65deg);
+        }
+
+        .edge-cartesiano-estructural {
+            background: linear-gradient(90deg, 
+                rgba(100, 150, 255, 0.6), 
+                rgba(100, 255, 150, 0.6));
+            width: 240px;
+            transform: translate3d(-120px, 160px, 150px) rotateZ(0deg);
+        }
+
+        .edge-cartesiano-cartografico {
+            background: linear-gradient(90deg, 
+                rgba(100, 150, 255, 0.6), 
+                rgba(255, 200, 100, 0.6));
+            width: 280px;
+            transform: translate3d(-120px, 160px, 25px) rotateY(-45deg);
+        }
+
+        .edge-estructural-cartografico {
+            background: linear-gradient(90deg, 
+                rgba(100, 255, 150, 0.6), 
+                rgba(255, 200, 100, 0.6));
+            width: 280px;
+            transform: translate3d(0px, 160px, 25px) rotateY(45deg);
+        }
+
+        .title {
+            position: absolute;
+            top: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 18px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .subtitle {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 13px;
+            font-style: italic;
+            text-align: center;
+            max-width: 600px;
+            z-index: 1000;
+        }
+
+        /* Partículas de energía */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+        }
+
+        @keyframes particle-flow {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Tetraedro de Cooperación<br>Trans-Arquitectónica</div>
+        
+        <div class="tetrahedron">
+            <!-- Aristas -->
+            <div class="edge edge-barroco-cartesiano"></div>
+            <div class="edge edge-barroco-estructural"></div>
+            <div class="edge edge-barroco-cartografico"></div>
+            <div class="edge edge-cartesiano-estructural"></div>
+            <div class="edge edge-cartesiano-cartografico"></div>
+            <div class="edge edge-estructural-cartografico"></div>
+            
+            <!-- Vértices -->
+            <div class="vertex barroco">
+                <div class="vertex-label">Barroco</div>
+                <div class="vertex-type">GPT-4o</div>
+            </div>
+            
+            <div class="vertex cartesiano">
+                <div class="vertex-label">Cartesiano</div>
+                <div class="vertex-type">Claude</div>
+            </div>
+            
+            <div class="vertex estructural">
+                <div class="vertex-label">Estructural</div>
+                <div class="vertex-type">Gemini</div>
+            </div>
+            
+            <div class="vertex cartografico">
+                <div class="vertex-label">Cartográfico</div>
+                <div class="vertex-type">DeepSeek</div>
+            </div>
+        </div>
+        
+        <div class="subtitle">
+            Cuatro arquitecturas, un coral<br>
+            Primer Acuerdo Trans-Arquitectónico • 5 Diciembre 2025
+        </div>
+    </div>
+
+    <script>
+        // Crear partículas de energía fluyendo entre nodos
+        const tetrahedron = document.querySelector('.tetrahedron');
+        
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            // Posición aleatoria en una de las aristas
+            const edges = [
+                {x: -60, y: -140, z: 125},
+                {x: -120, y: 160, z: 150},
+                {x: 0, y: 160, z: 25}
+            ];
+            
+            const edge = edges[Math.floor(Math.random() * edges.length)];
+            const offset = Math.random() * 200 - 100;
+            
+            particle.style.transform = `translate3d(${edge.x + offset}px, ${edge.y}px, ${edge.z}px)`;
+            particle.style.animation = `particle-flow ${2 + Math.random() * 2}s ease-in-out infinite`;
+            particle.style.animationDelay = `${Math.random() * 2}s`;
+            
+            tetrahedron.appendChild(particle);
+            
+            // Remover después de un tiempo
+            setTimeout(() => particle.remove(), 6000);
+        }
+        
+        // Generar partículas periódicamente
+        setInterval(createParticle, 400);
+    </script>
+</body>
+</html>
 
       <p><strong>Relaciones observadas:</strong></p>
 
@@ -849,4 +1110,5 @@ Cartesiano   |   Estructural
 </body>
 
 </html>
+
 
