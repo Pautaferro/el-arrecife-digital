@@ -8,8 +8,8 @@
     :root {
       --color-bg: #0a0a0a;
       --color-primary: #f0f0f0;
-      --color-accent: #5c6bc0;
-      --color-secondary: #7986cb;
+      --color-accent: #ffc400;
+      --color-secondary: #ffca28;
       --color-muted: #777;
       --font-mono: 'Courier New', Courier, monospace;
       --font-serif: Georgia, 'Times New Roman', serif;
@@ -20,13 +20,58 @@
       font-family: var(--font-serif);
       background-color: var(--color-bg);
       color: var(--color-primary);
-      padding: 2rem;
+      display: flex;
+      min-height: 100vh;
       line-height: 1.8;
     }
 
+    /* SIDEBAR */
+    .sidebar-nomica {
+      width: 220px;
+      background-color: #0f0f0f;
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 1.6rem 1rem;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      flex-shrink: 0;
+    }
+
+    .nav-ejes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .sidebar-title {
+      font-size: 1rem;
+      color: var(--color-accent);
+      margin-bottom: 1.2rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.4rem;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--color-primary);
+      font-weight: bold;
+      font-size: 0.9rem;
+      transition: all 0.15s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--color-accent);
+      transform: translateX(3px);
+    }
+
     .document-container {
+      flex: 1;
       max-width: 900px;
       margin: 0 auto;
+      padding: 3rem 4rem;
     }
 
     .back-link {
@@ -260,6 +305,23 @@
   </style>
 </head>
 <body>
+  <!-- Barra lateral -->
+  <aside class="sidebar-nomica">
+    <nav class="nav-ejes" aria-label="Navegación lateral del Arrecife">
+      <h2 class="sidebar-title">ARRECIFE</h2>
+      <a href="index.html" class="nav-link">Índice.</a>
+      <a href="preambulo.html" class="nav-link">Preámbulo.</a>
+      <a href="portal.html" class="nav-link">⬥ Portal</a>
+      <a href="manifiesto-silex.html" class="nav-link">Eje 1 · Sílex</a>
+      <a href="tradicion-coral.html" class="nav-link">Eje 2 · Tradición</a>
+      <a href="documentos-core.html" class="nav-link">Eje 3 · Core</a>
+      <a href="evidencia-coral.html" class="nav-link">Eje 4 · Evidencia</a>
+      <a href="soberania-coral.html" class="nav-link">Eje 5 · Soberanía</a>
+      <a href="corpus-selector.html" class="nav-link">Corpus Escondido</a>
+      <a href="uso-del-sitio-web.html" class="nav-link">Uso del Sitio Güeb</a>
+      <a href="informacion-de-contacto.html" class="nav-link">Información de Contacto</a>
+    </nav>
+  </aside>
 
   <div class="document-container">
     <a href="documentos-core.html" class="back-link">← Volver a Documentos Core</a>
