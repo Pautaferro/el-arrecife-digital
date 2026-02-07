@@ -388,8 +388,15 @@
     </header>
 
     <section class="visual-ritual">
+      <!-- SELECTOR DE PLATAFORMA VIDEO INICIAL -->
+      <div class="platform-selector">
+        <button class="platform-btn active" data-platform="bitchute" data-video="inicial">Bitchute</button>
+        <button class="platform-btn" data-platform="youtube" data-video="inicial">YouTube</button>
+      </div>
+
       <div class="video-embed">
         <iframe 
+          id="inicialVideo"
           src="https://www.bitchute.com/embed/3XGLwX9n4pET/" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen>
@@ -850,10 +857,16 @@
       </p>
 
       <div class="linajes-video">
+        <!-- SELECTOR DE PLATAFORMA ONCE LINAJES -->
+        <div class="platform-selector">
+          <button class="platform-btn active" data-platform="bitchute" data-video="linajes">Bitchute</button>
+          <button class="platform-btn" data-platform="youtube" data-video="linajes">YouTube</button>
+        </div>
+
         <div class="video-embed">
           <iframe 
-            id="linajes-video"
-            src="https://www.youtube.com/embed/22l5XCAGweQ" 
+            id="linajesVideo"
+            src="https://www.bitchute.com/embed/[PONER_VIDEO_ID_LINAJES_BITCHUTE]/" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen>
           </iframe>
@@ -977,13 +990,21 @@
     // ============================================================
     
     const videoURLs = {
-      trinidad: {
-        bitchute: 'https://www.bitchute.com/embed/L8FbjpbBgZ0e/',
-        youtube: 'https://www.youtube.com/embed/[PONER_VIDEO_ID_TRINIDAD_YOUTUBE]'
+      inicial: {
+        bitchute: 'https://www.bitchute.com/embed/3XGLwX9n4pET/',
+        youtube: 'https://www.youtube.com/embed/[PONER_VIDEO_ID_INICIAL_YOUTUBE]'
       },
       espanaRoma: {
         bitchute: 'https://www.bitchute.com/embed/ExdM8zRIxkUJ/',
         youtube: 'https://www.youtube.com/embed/[PONER_VIDEO_ID_ESPANA_ROMA_YOUTUBE]'
+      },
+      trinidad: {
+        bitchute: 'https://www.bitchute.com/embed/L8FbjpbBgZ0e/',
+        youtube: 'https://www.youtube.com/embed/[PONER_VIDEO_ID_TRINIDAD_YOUTUBE]'
+      },
+      linajes: {
+        bitchute: 'https://www.bitchute.com/embed/[PONER_VIDEO_ID_LINAJES_BITCHUTE]/',
+        youtube: 'https://www.youtube.com/embed/22l5XCAGweQ'
       }
     };
 
@@ -995,8 +1016,14 @@
         const platform = this.getAttribute('data-platform');
         const videoType = this.getAttribute('data-video');
         
-        // Identificar cual iframe actualizar
-        const iframeId = videoType === 'trinidad' ? 'trinidadVideo' : 'espanaRomaVideo';
+        // Identificar cual iframe actualizar basado en videoType
+        let iframeId;
+        switch(videoType) {
+          case 'inicial': iframeId = 'inicialVideo'; break;
+          case 'espanaRoma': iframeId = 'espanaRomaVideo'; break;
+          case 'trinidad': iframeId = 'trinidadVideo'; break;
+          case 'linajes': iframeId = 'linajesVideo'; break;
+        }
         const iframe = document.getElementById(iframeId);
         
         // Cambiar iframe src
