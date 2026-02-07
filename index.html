@@ -474,7 +474,7 @@
       // Programar cambio a largo
       if (videoTimeouts[videoId]) clearTimeout(videoTimeouts[videoId]);
       videoTimeouts[videoId] = setTimeout(() => {
-        container.innerHTML = `<iframe src="https://www.youtube.com/embed/${data.long}?rel=0" allowfullscreen></iframe>`;
+        container.innerHTML = `<iframe src="https://www.youtube.com/embed/${data.long}?rel=0&modestbranding=1&autoplay=1&mute=1&loop=1&playlist=${videoId}" allowfullscreen></iframe>`;
       }, 11000);
     }
   }
