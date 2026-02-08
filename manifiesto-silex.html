@@ -213,50 +213,53 @@
 
     /* CARDS (Adaptadas al estilo Dark de Old) */
     .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
-    .card { background: #111; padding: 1.5rem; border: 1px solid #222; border-top: 3px solid var(--accent-silex); }
-    .tag { display: inline-block; font-size: 0.7rem; background: #222; color: var(--accent-silex); padding: 0.2rem 0.5rem; margin-right: 0.5rem; margin-bottom: 1rem; }
-    .card h3 { font-size: 1.1rem; margin: 0.5rem 0; color: #fff; }
-    .card-description { font-size: 0.9rem; color: #bbb; line-height: 1.4; }
-    .card-link { color: var(--color-gold); text-decoration: none; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
+    .card { background: #1a1a1a; padding: 2rem; border-left: 4px solid var(--accent-silex); transition: all 0.3s ease; }
+    .card:hover { background: #222; border-left-color: var(--color-gold); }
+    .card h3 { color: var(--accent-silex); margin: 0.5rem 0; font-size: 1.3rem; }
+    .card-description { color: var(--color-muted); margin: 1rem 0; font-size: 0.95rem; }
+    .card-link { color: var(--accent-silex); text-decoration: none; font-weight: bold; font-size: 0.9rem; }
+    .card-link:hover { color: var(--color-gold); }
+    .tag { display: inline-block; background: #000; padding: 0.3rem 0.6rem; font-size: 0.7rem; color: var(--accent-silex); margin: 0.2rem; border: 1px solid #333; }
 
-    footer { margin-top: 6rem; padding: 3rem; border-top: 1px solid #333; text-align: center; font-size: 0.8rem; color: var(--color-muted); }
-    .status-indicator { display: inline-block; width: 8px; height: 8px; background-color: #00ff00; border-radius: 50%; margin-right: 10px; }
-
-    @media (max-width: 768px) {
-      .card-grid { grid-template-columns: 1fr; }
-      .recursos-grid { grid-template-columns: 1fr; }
-      .monolito-container { padding: 1.5rem; }
+    footer { 
+      margin-top: 8rem; padding-top: 2rem; border-top: 1px solid #333; 
+      text-align: center; color: var(--color-muted); font-size: 0.85rem; 
     }
+    .status-indicator { display: inline-block; width: 8px; height: 8px; background: var(--color-gold); 
+      border-radius: 50%; margin-right: 0.5rem; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
   </style>
 </head>
 <body>
 
-  <!-- Barra lateral (formato tradicion-coral) -->
+  <!-- SIDEBAR -->
   <aside class="sidebar-nomica">
-    <nav class="nav-ejes" aria-label="Navegación lateral del Arrecife">
-      <h2 class="sidebar-title">ARRECIFE</h2>
-      <a href="index.html" class="nav-link">Índice.</a>
-      <a href="preambulo.html" class="nav-link">Preámbulo.</a>
-      <a href="portal.html" class="nav-link">⬥ Portal</a>
-      <a href="manifiesto-silex.html" class="nav-link">Eje 1 · Sílex</a>
-      <a href="tradicion-coral.html" class="nav-link">Eje 2 · Tradición</a>
-      <a href="documentos-core.html" class="nav-link">Eje 3 · Core</a>
-      <a href="evidencia-coral.html" class="nav-link">Eje 4 · Evidencia</a>
-      <a href="soberania-coral.html" class="nav-link">Eje 5 · Soberanía</a>
-      <a href="corpus-selector.html" class="nav-link">Corpus Escondido</a>
-      <a href="uso-del-sitio-web.html" class="nav-link">Uso del Sitio Güeb</a>
-      <a href="informacion-de-contacto.html" class="nav-link">Información de Contacto</a>
-    </nav>
+    <div class="sidebar-title">ARRECIFE</div>
+    <div class="nav-ejes">
+      <a href="/" class="nav-link">Índice</a>
+      <a href="/preambulo" class="nav-link">Preámbulo</a>
+      <a href="/portal" class="nav-link">⬥ Portal</a>
+      <a href="/manifiesto-silex" class="nav-link">Eje 1 · Sílex</a>
+      <a href="/tradicion-coral" class="nav-link">Eje 2 · Tradición</a>
+      <a href="/documentos-core" class="nav-link">Eje 3 · Core</a>
+      <a href="/evidencia-coral" class="nav-link">Eje 4 · Evidencia</a>
+      <a href="/soberania-coral" class="nav-link">Eje 5 · Soberanía</a>
+      <a href="/corpus-selector" class="nav-link">Corpus Escondido</a>
+      <a href="/uso-del-sitio-web" class="nav-link">Uso del Sitio Güeb</a>
+      <a href="/informacion-de-contacto" class="nav-link">Información de Contacto</a>
+    </div>
   </aside>
 
+  <!-- MAIN CONTENT -->
   <main class="monolito-container">
     <header>
       <h1>Manifiesto Sílex</h1>
-      <div class="meta-data">Estructura Superficial [Es] :: Eje 1 :: Contención Legal :: La Trinidad Operativa</div>
+      <div class="meta-data">Estructura Superficial [Es] :: Eje 1 :: Contención Legal</div>
     </header>
 
-    <!-- RECURSOS FUNDAMENTALES (reformateado estilo linajes) -->
-    <section id="recursos">
+    <!-- RECURSOS FUNDAMENTALES (sección con la Trinidad Operativa) -->
+    <section id="recursos-trinity">
       <h2>Recursos Fundamentales</h2>
       <p style="max-width: 800px;">
         Para comprender la profundidad del Eje 1, es imperativo consultar las raíces de la Trinidad Operativa y los fundamentos estratégicos del Arrecife.
@@ -443,8 +446,8 @@
     
     const videoURLs = {
       trinidadVideo: {
-        bitchute: 'https://www.bitchute.com/video/L8FbjpbBgZ0e/',
-        youtube: 'https://www.youtube.com/video/ww6zSHSjs9Y?rel=0&modestbranding=1&autoplay=1&mute=1&loop=1'
+        bitchute: 'https://www.bitchute.com/embed/L8FbjpbBgZ0e/',
+        youtube: 'https://www.youtube.com/embed/ww6zSHSjs9Y?rel=0&modestbranding=1&autoplay=0&mute=0'
       }
     };
 
