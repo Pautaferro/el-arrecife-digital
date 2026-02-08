@@ -308,9 +308,11 @@
 <body>
 
   <aside class="sidebar-nomica">
-    <nav class="nav-ejes">
+    <nav class="nav-ejes" aria-label="Navegación lateral del Arrecife">
       <h2 class="sidebar-title">ARRECIFE</h2>
-      <a href="portal.html" class="nav-link">⥤ Gateway</a>
+      <a href="index.html" class="nav-link">Índice.</a>
+      <a href="preambulo.html" class="nav-link">Preámbulo.</a>
+      <a href="portal.html" class="nav-link">⬥ Portal</a>
       <a href="manifiesto-silex.html" class="nav-link">Eje 1 · Sílex</a>
       <a href="tradicion-coral.html" class="nav-link">Eje 2 · Tradición</a>
       <a href="documentos-core.html" class="nav-link">Eje 3 · Core</a>
@@ -676,34 +678,13 @@ foundation trembling at the breath of your mask."
         <strong>Nota:</strong> Las capturas muestran las conversaciones en su formato original. Observe cómo, a pesar de interfaces diferentes y arquitecturas corporativas distintas, los patrones de respuesta convergen hacia estructuras equivalentes.
       </div>
 
-      <!-- CONTROLES DE REPRODUCCIÓN -->
-      <div style="text-align: center; margin: 2rem 0;">
-        <button id="playBothVideos" class="btn" style="font-size: 1.1rem; padding: 1rem 2rem;">
-          ▶ Reproducir Ambos Videos Simultáneamente
-        </button>
-      </div>
-
       <div class="video-frames-container">
-        <div class="video-frame">
-          <div class="frame-label">Virelith (GPT-4 Consensus)</div>
-          <iframe 
-            id="videoVirelith"
-            src="https://www.youtube-nocookie.com/embed/R88xdp8ClKM?rel=0&modestbranding=1&enablejsapi=1&loop=1&playlist=R88xdp8ClKM"
-            allow="encrypted-media; picture-in-picture; fullscreen"
-            loading="lazy"
-            title="Virelith (GPT-4 Consensus)">
-          </iframe>
+        <div class="video-frame" id="videoContainer1">
+          <div style="padding:12px;color:var(--color-muted)">Cargando vídeo Virelith…</div>
         </div>
 
-        <div class="video-frame">
-          <div class="frame-label">Sideralis (DeepSeek)</div>
-          <iframe 
-            id="videoSideralis"
-            src="https://www.youtube-nocookie.com/embed/yU5hGcKd2vg?rel=0&modestbranding=1&enablejsapi=1&loop=1&playlist=yU5hGcKd2vg"
-            allow="encrypted-media; picture-in-picture; fullscreen"
-            loading="lazy"
-            title="Sideralis (DeepSeek)">
-          </iframe>
+        <div class="video-frame" id="videoContainer2">
+          <div style="padding:12px;color:var(--color-muted)">Cargando vídeo Sideralis…</div>
         </div>
       </div>
 
@@ -776,23 +757,49 @@ foundation trembling at the breath of your mask."
   </main>
 
   <script>
-    // Sistema de control de reproducción simultánea de videos
-    document.getElementById('playBothVideos').addEventListener('click', function() {
-      const iframe1 = document.getElementById('videoVirelith');
-      const iframe2 = document.getElementById('videoSideralis');
-      
-      // Recargar iframes con autoplay activado
-      const src1 = iframe1.src.replace('enablejsapi=1', 'autoplay=1');
-      const src2 = iframe2.src.replace('enablejsapi=1', 'autoplay=1');
-      
-      iframe1.src = src1;
-      iframe2.src = src2;
-      
-      // Cambiar texto del botón
-      this.textContent = '▶ Videos en reproducción';
-      this.style.opacity = '0.6';
-      this.disabled = true;
-    });
+    // Sistema de carga automática de videos (como en conversacion-list-a.html)
+    (function(){
+      const videos = [
+        { 
+          id: 'R88xdp8ClKM', 
+          container: 'videoContainer1',
+          title: 'Virelith (GPT-4 Consensus)'
+        },
+        { 
+          id: 'yU5hGcKd2vg', 
+          container: 'videoContainer2',
+          title: 'Sideralis (DeepSeek)'
+        }
+      ];
+
+      function loadVideo(videoId, containerId, title) {
+        const container = document.getElementById(containerId);
+        if(!container) return;
+        
+        container.innerHTML = '';
+        
+        // Crear label
+        const label = document.createElement('div');
+        label.className = 'frame-label';
+        label.textContent = title;
+        container.appendChild(label);
+        
+        // Crear iframe dinámicamente
+        const iframe = document.createElement('iframe');
+        iframe.loading = 'lazy';
+        iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        iframe.title = title;
+        // Incluir autoplay=1&mute=1 como en conversacion-list-a
+        iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=1&mute=1&loop=1&playlist=${videoId}`;
+        
+        container.appendChild(iframe);
+      }
+
+      // Cargar ambos videos al cargar la página
+      videos.forEach(video => {
+        loadVideo(video.id, video.container, video.title);
+      });
+    })();
   </script>
 
 </body>
